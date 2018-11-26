@@ -1,0 +1,4 @@
+^LICENSE\.md$
+^Dockerfile$
+^docker-compose\.yml$
+^\.env$
