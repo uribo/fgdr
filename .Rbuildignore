@@ -1,4 +1,7 @@
+^data-raw$
 ^LICENSE\.md$
 ^Dockerfile$
 ^docker-compose\.yml$
 ^\.env$
+^.*\.Rproj$
+^\.Rproj\.user$
