@@ -2,9 +2,11 @@
 
 export("%>%")
 import(purrr)
+import(sf)
 import(xml2)
 importFrom(magrittr,"%>%")
 importFrom(magrittr,use_series)
+importFrom(purrr,pmap)
 importFrom(purrr,reduce)
 importFrom(raster,raster)
 importFrom(rlang,arg_match)

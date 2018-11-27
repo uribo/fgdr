@@ -1,6 +1,9 @@
 #' Read and Parse FDG's XML file
 #'
 #' @param file Path to XML file
+#' @import sf
+#' @import xml2
+#' @importFrom purrr pmap
 read_fdg <- function(file) {
 
   fdg_type <-
