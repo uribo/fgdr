@@ -13,6 +13,7 @@ RUN set -x && \
     jpmesh \
     mapview \
     raster \
+    rgdal \
     reprex \
     sf \
     usethis && \
