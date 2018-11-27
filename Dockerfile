@@ -10,7 +10,9 @@ RUN set -x && \
 
 RUN set -x && \
   install2.r --error \
+    jpmesh \
     mapview \
+    raster \
     reprex \
     sf \
     usethis && \

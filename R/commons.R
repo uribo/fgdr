@@ -39,10 +39,10 @@ fdg_line_parse <- function(file) {
   }
 }
 
-fdg_file_type <- function(file) {
+fdg_file_type <- function(file, ...) {
 
   xmls <-
-    xml2::read_xml(file)
+    xml2::read_xml(file, ...)
 
   type <-
     xmls %>%
