@@ -5,14 +5,14 @@
 #' @param ... Additional arguments passed on to other functions.
 dem_check <- function(file, .verbose = TRUE, ...) {
 
-  fgd_type <-
-    fdg_file_type(file, ...)
+  file_info <-
+    fdg_file_info(file, ...)
 
-  if (fgd_type$type != "DEM") {
+  if (file_info$type != "DEM") {
     rlang::inform("Input files must be DEM format")
   } else {
     value_order <-
-      fgd_type$xml_docs %>%
+      file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:sequenceRule") %>%
       xml2::xml_attr(attr = "order")
 
@@ -20,7 +20,7 @@ dem_check <- function(file, .verbose = TRUE, ...) {
       rlang::inform("check input file format")
 
     start_point <-
-      fgd_type$xml_docs %>%
+      file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:startPoint") %>%
       xml2::xml_text() %>%
       stringr::str_split("[[:space:]]") %>%

@@ -6,20 +6,20 @@
 #' @importFrom purrr pmap
 read_fdg <- function(file) {
 
-  fdg_type <-
-    fdg_file_type(file)
+  file_info <-
+    fdg_file_info(file)
 
   xml_parsed <-
     fdg_line_parse(file)
 
   ids <-
-    fdg_type$xml_docs %>%
+    file_info$xml_docs %>%
     xml2::xml_find_all("/*/*/*[3]") %>%
     xml2::xml_attr("id")
 
-  if (fdg_type$type == "AdmArea") {
+  if (file_info$type == "AdmArea") {
     nms <-
-      fdg_type$xml_docs %>%
+      file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*[8]") %>%
       xml2::xml_text()
 

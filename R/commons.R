@@ -7,14 +7,14 @@
 #' @details type AdmArea, BldA, WA
 fdg_line_parse <- function(file) {
 
-  fgd_type <- fdg_file_type(file)
+  file_info <- fdg_file_info(file)
 
-  if (!fgd_type$type %in% c("AdmArea", "BldA", "WA", "WL")) {
+  if (!file_info$type %in% c("AdmArea", "BldA", "WA", "WL")) {
    rlang::abort("input irregular type file")
   }
 
-  if (fgd_type$type %in% c("AdmArea")) {
-    fgd_type$xml_docs %>%
+  if (file_info$type %in% c("AdmArea")) {
+    file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
       purrr::map(
         ~ xml2::xml_text(.x, trim = TRUE) %>%
@@ -25,8 +25,8 @@ fdg_line_parse <- function(file) {
           purrr::map(~ as.numeric(rev(.x)))
       )
   }
-  if (fgd_type$type %in% c("WL")) {
-    fgd_type$xml_docs %>%
+  if (file_info$type %in% c("WL")) {
+    file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/*/*/*") %>%
       purrr::map(
         ~ xml2::xml_text(.x, trim = TRUE) %>%
@@ -39,7 +39,7 @@ fdg_line_parse <- function(file) {
   }
 }
 
-fdg_file_type <- function(file, ...) {
+fdg_file_info <- function(file, ...) {
 
   xmls <-
     xml2::read_xml(file, ...)
