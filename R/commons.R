@@ -9,12 +9,17 @@ fdg_line_parse <- function(file) {
 
   file_info <- fdg_file_info(file)
 
-  if (!file_info$type %in% c("AdmArea", "BldA", "WA", "WL")) {
+  if (!file_info$type %in% c("AdmBdry", "BldL",
+                             "Cntr",
+                             "CommBdry",
+                             "WA", "WL",
+                             "AdmArea", "BldA")) {
    rlang::abort("input irregular type file")
   }
 
   if (file_info$type %in% c("AdmArea")) {
-    file_info$xml_docs %>%
+    res <-
+      file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
       purrr::map(
         ~ xml2::xml_text(.x, trim = TRUE) %>%
@@ -25,8 +30,24 @@ fdg_line_parse <- function(file) {
           purrr::map(~ as.numeric(rev(.x)))
       )
   }
+
+  if (file_info$type %in% c("AdmBdry", "BldL", "Cntr", "CommBdry")) {
+    res <-
+      file_info$xml_docs %>%
+      xml2::xml_find_all("/*/*/*/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
+      .line_parse()
+  }
+
+  if (file_info$type %in% c("BldA")) {
+    res <-
+      file_info$xml_docs %>%
+      xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
+      .line_parse()
+  }
+
   if (file_info$type %in% c("WL")) {
-    file_info$xml_docs %>%
+    res <-
+      file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/*/*/*") %>%
       purrr::map(
         ~ xml2::xml_text(.x, trim = TRUE) %>%
@@ -37,6 +58,29 @@ fdg_line_parse <- function(file) {
           purrr::map(~ as.numeric(rev(.x)))
       )
   }
+  res
+}
+
+fdg_point_parse <- function(file) {
+
+  file_info <- fdg_file_info(file)
+
+  if (!file_info$type %in% c("AdmPt", "CommPt", "ElevPt",
+                             "GCP")) {
+    rlang::abort("input irregular type file")
+  }
+
+  res <-
+      file_info$xml_docs %>%
+      xml2::xml_find_all("/*/*/*/gml:Point/gml:pos") %>%
+      xml2::xml_contents() %>%
+      as.character() %>%
+      purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
+      purrr::flatten() %>%
+      purrr::map(~ as.numeric(rev(.x)))
+
+  res
+
 }
 
 fdg_file_info <- function(file, ...) {

@@ -54,3 +54,16 @@ set_coords <- function(raster, meshcode){
     sp::proj4string()
   raster
 }
+
+.line_parse <- function(xml_node) {
+  xml_node %>%
+    xml2::xml_contents() %>%
+    purrr::map(
+      ~ xml2::xml_text(.x, trim = TRUE) %>%
+        stringr::str_split("\n") %>%
+        purrr::flatten() %>%
+        purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
+        purrr::flatten() %>%
+        purrr::map(~ as.numeric(rev(.x)))
+    )
+}
