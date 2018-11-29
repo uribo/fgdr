@@ -82,7 +82,8 @@ read_fdg <- function(file) {
             alti = ..4,
             geometry = .
           )
-      )
+      ) %>%
+      purrr::reduce(rbind)
 
   }
 
@@ -108,7 +109,8 @@ read_fdg <- function(file) {
             bdry_type = ..3,
             geometry = .
           )
-      )
+      ) %>%
+      purrr::reduce(rbind)
   }
 
   if (file_info$type %in% c("CommPt")) {
@@ -198,7 +200,8 @@ read_fdg <- function(file) {
             ) %>%
             sf::st_polygonize() %>%
             sf::st_collection_extract("POLYGON")
-        )
+        ) %>%
+        purrr::reduce(rbind)
     }
 
     if (file_info$type %in% c("AdmPt")) {
