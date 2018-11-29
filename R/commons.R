@@ -12,7 +12,10 @@ fdg_line_parse <- function(file) {
   if (!file_info$type %in% c("AdmBdry", "BldL",
                              "Cntr",
                              "CommBdry",
+                             "RailCL",
+                             "RdCompt", "RdEdg",
                              "WA", "WL",
+                             "WStrA", "WStrL",
                              "AdmArea", "BldA")) {
    rlang::abort("input irregular type file")
   }
@@ -31,33 +34,21 @@ fdg_line_parse <- function(file) {
       )
   }
 
-  if (file_info$type %in% c("AdmBdry", "BldL", "Cntr", "CommBdry")) {
+  if (file_info$type %in% c("AdmBdry", "BldL", "Cntr", "CommBdry",
+                            "RailCL", "RdCompt", "RdEdg", "WL", "WStrL")) {
     res <-
       file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
       .line_parse()
   }
 
-  if (file_info$type %in% c("BldA")) {
+  if (file_info$type %in% c("BldA", "WA", "WStrA")) {
     res <-
       file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
       .line_parse()
   }
 
-  if (file_info$type %in% c("WL")) {
-    res <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/*/*/*") %>%
-      purrr::map(
-        ~ xml2::xml_text(.x, trim = TRUE) %>%
-          stringr::str_split("\n") %>%
-          purrr::flatten() %>%
-          purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
-          purrr::flatten() %>%
-          purrr::map(~ as.numeric(rev(.x)))
-      )
-  }
   res
 }
 
