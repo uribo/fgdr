@@ -140,7 +140,36 @@ read_fdg <- function(file) {
             comm_type = ..4,
             geometry = .
           )
-      )
+      ) %>%
+      purrr::reduce(rbind)
+
+  }
+
+  if (file_info$type %in% c("AdmBdry")) {
+
+    xml_parsed <-
+      fdg_line_parse(file)
+
+    type <-
+      file_info$xml_docs %>%
+      xml2::xml_find_all("/*/*/*[7]") %>%
+      xml2::xml_contents() %>%
+      as.character()
+
+    res <-
+      list(xml_parsed, ids, type) %>%
+      purrr::pmap(
+        ~ sf::st_linestring(matrix(unlist(..1),
+                              ncol = 2,
+                              byrow = TRUE)) %>%
+          sf::st_sfc(crs = 4326) %>%
+          sf::st_sf(
+            gml_id = ..2,
+            type = ..3,
+            geometry = .
+          )
+      ) %>%
+      purrr::reduce(rbind)
 
   }
 
@@ -216,11 +245,18 @@ read_fdg <- function(file) {
                 geometry = .
               ) %>%
               sf::st_polygonize() %>%
-              sf::st_collection_extract("POLYGON")
-          )
+              sf::st_collection_extract("POLYGON"))
+
+        if (length(res) >= 10000) {
+          rlang::inform("There are over 10,000 elements. Because there are many cases, will be return it as a list.")
+        } else {
+          res <-
+            res %>%
+            purrr::reduce(rbind)
+        }
       }
 
-    if (file_info == "BldL") {
+    if (file_info$type == "BldL") {
 
         res <-
           list(xml_parsed, ids, bld_type) %>%
