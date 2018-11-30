@@ -10,6 +10,7 @@ RUN set -x && \
 
 RUN set -x && \
   install2.r --error \
+    ensurer \
     jpmesh \
     mapview \
     raster \
