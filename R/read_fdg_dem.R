@@ -1,6 +1,6 @@
-#' Read and Parse FDG's XML dem file
+#' Read and Parse FGD's XML dem file
 #'
-#' @inheritParams read_fdg
+#' @inheritParams read_fgd
 #' @param resolution the number of dem mesh size resolution: 5m or 10m
 #' @param return_class one of return object class: 'df' (data.frame), 'raster'
 #' @import xml2
@@ -10,7 +10,7 @@
 #' @importFrom rlang arg_match
 #' @importFrom tibble add_row
 #' @importFrom utils read.delim
-read_fdg_dem <- function(file, resolution = c(5, 10), return_class = c("df", "raster")) {
+read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "raster")) {
 
   . <- value <- NULL
 
@@ -29,7 +29,7 @@ read_fdg_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
     dem_check(file, .verbose = FALSE, options = xml_opts)
 
   file_info <-
-    fdg_dem_file_info(file, options = xml_opts)
+    fgd_dem_file_info(file, options = xml_opts)
 
   df_dem <-
     file_info$xml_docs %>%

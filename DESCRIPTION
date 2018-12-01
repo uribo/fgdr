@@ -1,4 +1,4 @@
-Package: fdgr
+Package: fgdr
 Title: Utilities for Fundamental Geospatial Data
 Version: 0.0.0.9000
 Authors@R: c(
@@ -19,7 +19,7 @@ Imports:
     xml2 (>= 1.2.0)
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/uribo/fdgr
-BugReports: https://github.com/uribo/fdgr/issues
+URL: https://github.com/uribo/fgdr
+BugReports: https://github.com/uribo/fgdr/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
