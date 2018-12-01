@@ -1,12 +1,12 @@
 #' DEM input file status check
 #'
-#' @inherit fdg_line_parse
+#' @inherit fgd_line_parse
 #' @param .verbose `logical`. suppress info input XML file's about DEM information.
 #' @param ... Additional arguments passed on to other functions.
 dem_check <- function(file, .verbose = TRUE, ...) {
 
   file_info <-
-    fdg_file_info(file, ...)
+    fgd_file_info(file, ...)
 
   if (file_info$type != "DEM") {
     rlang::inform("Input files must be DEM format")

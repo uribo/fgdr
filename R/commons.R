@@ -5,9 +5,9 @@
 #' @importFrom xml2 read_xml xml_find_all xml_text
 #' @import purrr
 #' @details type AdmArea, BldA, WA
-fdg_line_parse <- function(file) {
+fgd_line_parse <- function(file) {
 
-  file_info <- fdg_file_info(file)
+  file_info <- fgd_file_info(file)
 
   if (!file_info$type %in% c("AdmBdry", "BldL",
                              "Cntr",
@@ -52,9 +52,9 @@ fdg_line_parse <- function(file) {
   res
 }
 
-fdg_point_parse <- function(file) {
+fgd_point_parse <- function(file) {
 
-  file_info <- fdg_file_info(file)
+  file_info <- fgd_file_info(file)
 
   if (!file_info$type %in% c("AdmPt", "CommPt", "ElevPt",
                              "GCP")) {
@@ -74,7 +74,7 @@ fdg_point_parse <- function(file) {
 
 }
 
-fdg_file_info <- function(file, ...) {
+fgd_file_info <- function(file, ...) {
 
   xmls <-
     xml2::read_xml(file, ...)
@@ -88,10 +88,10 @@ fdg_file_info <- function(file, ...) {
 
 }
 
-fdg_dem_file_info <- function(file, ...) {
+fgd_dem_file_info <- function(file, ...) {
 
   file_info <-
-    fdg_file_info(file, ...)
+    fgd_file_info(file, ...)
 
   is5m <-
     file_info$xml_docs %>%
