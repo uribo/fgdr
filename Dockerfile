@@ -18,5 +18,6 @@ RUN set -x && \
     sf \
     usethis && \
   installGithub.r \
-    "dantonnoriega/xmltools" && \
+    "dantonnoriega/xmltools" \
+    "klutometis/roxygen" && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
