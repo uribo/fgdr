@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dataset xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:default="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema" xsi:schemaLocation="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema FGD_GMLSchema.xsd" gml:id="Dataset1">
+  <gml:description>基盤地図情報メタデータ ID=dummy:00-0000</gml:description>
+  <gml:name>基盤地図情報ダウンロードデータ（GML版dummy）</gml:name>
+  <AdmPt gml:id="K6_0000000000_1">
+    <fid>00000-00000-i-00</fid>
+    <lfSpanFr gml:id="K6_0000000000_1-1">
+      <gml:timePosition>2018-12-01</gml:timePosition>
+    </lfSpanFr>
+    <devDate gml:id="K6_0000000000_1-2">
+      <gml:timePosition>2018-12-01</gml:timePosition>
+    </devDate>
+    <orgGILvl>25000</orgGILvl>
+    <vis>非表示</vis>
+    <pos>
+      <gml:Point gml:id="K6_0000000000_1" srsName="fguuid:jgd2011.bl">
+        <gml:pos>36.1035 140.0850</gml:pos>
+      </gml:Point>
+    </pos>
+    <type>郡市・東京都の区</type>
+    <name>dummy</name>
+    <admCode>00000</admCode>
+  </AdmPt>
+</Dataset>
