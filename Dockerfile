@@ -17,7 +17,8 @@ RUN set -x && \
     rgdal \
     reprex \
     sf \
-    usethis && \
+    usethis \
+    zeallot && \
   installGithub.r \
     "dantonnoriega/xmltools" \
     "klutometis/roxygen" && \
