@@ -24,3 +24,15 @@ if (file.exists(path2xsd) == FALSE) {
   unzip(dl_file, exdir = "data-raw")
   unlink(dl_file)
 }
+
+# Modify xsd --------------------------------------------------------------
+if (file.exists("inst/FGD_GMLSchema.xsd") == FALSE) {
+  str <- readLines(path2xsd)
+
+  str <- sub('xmlns="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema"',
+             'xmlns:default="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema"', str)
+
+  cat(paste(str, collapse = "\n"),
+      file = paste0("inst/", basename(path2xsd)),
+      append = FALSE)
+}
