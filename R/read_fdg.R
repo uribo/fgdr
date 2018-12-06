@@ -4,6 +4,7 @@
 #' @import sf
 #' @import xml2
 #' @importFrom purrr pmap
+#' @export
 read_fgd <- function(file) {
 
   . <- NULL

@@ -10,6 +10,7 @@
 #' @importFrom rlang arg_match
 #' @importFrom tibble add_row
 #' @importFrom utils read.delim
+#' @export
 read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "raster")) {
 
   . <- value <- NULL
