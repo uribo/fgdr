@@ -77,7 +77,7 @@ read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
              resolution = 5)
 ```
 
-```{r, eval = TRUE, eval = FALSE}
+```{r, eval = TRUE, echo = FALSE}
 read_fgd_dem("data-raw/FG-GML-5135-63-DEM5A/FG-GML-5135-63-00-DEM5A-20161001.xml", 
              resolution = 5)
 ```
@@ -104,7 +104,7 @@ plot(r)
 title(main = "数値標高モデル (5mメッシュ): 51356300",
       sub = "「基盤地図情報 数値標高モデル 5mメッシュ」（国土地理院）（https://fgd.gsi.go.jp/download/menu.php）\nをもとに瓜生真也(@uribo)が作成",
       cex.main = 1,
-      cex.sub = 0.75,
+      cex.sub = 0.45,
       adj = 1)
 ```
 
@@ -118,7 +118,7 @@ read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
              return_class = "raster")
 ```
 
-```{r, eval = TRUE, echo = TRUE}
+```{r, eval = TRUE, echo = FALSE}
 read_fgd_dem("data-raw/FG-GML-5440-10-dem10b-20161001.xml", 
              resolution = 10,
              return_class = "raster")

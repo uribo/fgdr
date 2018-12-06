@@ -89,10 +89,20 @@ read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
              resolution = 5)
 ```
 
-``` r
-read_fgd_dem("data-raw/FG-GML-5135-63-DEM5A/FG-GML-5135-63-00-DEM5A-20161001.xml", 
-             resolution = 5)
-```
+    #> # A tibble: 33,750 x 2
+    #>    type       value
+    #>    <chr>      <dbl>
+    #>  1 データなし -9999
+    #>  2 データなし -9999
+    #>  3 データなし -9999
+    #>  4 データなし -9999
+    #>  5 データなし -9999
+    #>  6 データなし -9999
+    #>  7 データなし -9999
+    #>  8 データなし -9999
+    #>  9 データなし -9999
+    #> 10 データなし -9999
+    #> # ... with 33,740 more rows
 
 デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class
 =`によりrasterを選ぶことも可能です。rasterとして読み込み、可視化する例を示します。
@@ -110,7 +120,7 @@ plot(r)
 title(main = "数値標高モデル (5mメッシュ): 51356300",
       sub = "「基盤地図情報 数値標高モデル 5mメッシュ」（国土地理院）（https://fgd.gsi.go.jp/download/menu.php）\nをもとに瓜生真也(@uribo)が作成",
       cex.main = 1,
-      cex.sub = 0.75,
+      cex.sub = 0.45,
       adj = 1)
 ```
 
@@ -126,19 +136,14 @@ read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
              return_class = "raster")
 ```
 
-``` r
-read_fgd_dem("data-raw/FG-GML-5440-10-dem10b-20161001.xml", 
-             resolution = 10,
-             return_class = "raster")
-#> class       : RasterLayer 
-#> dimensions  : 750, 1125, 843750  (nrow, ncol, ncell)
-#> resolution  : 0.0001111111, 0.00011112  (x, y)
-#> extent      : 140, 140.125, 36.08333, 36.16667  (xmin, xmax, ymin, ymax)
-#> coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-#> data source : in memory
-#> names       : layer 
-#> values      : -9999, 316  (min, max)
-```
+    #> class       : RasterLayer 
+    #> dimensions  : 750, 1125, 843750  (nrow, ncol, ncell)
+    #> resolution  : 0.0001111111, 0.00011112  (x, y)
+    #> extent      : 140, 140.125, 36.08333, 36.16667  (xmin, xmax, ymin, ymax)
+    #> coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+    #> data source : in memory
+    #> names       : layer 
+    #> values      : -9999, 316  (min, max)
 
 ## ライセンス
 
