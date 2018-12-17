@@ -55,7 +55,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
       df_dem %>%
       tibble::add_row(
         type = rep("\u30c7\u30fc\u30bf\u306a\u3057",
-                   times = (checked[1] + checked[2])),
+                   times = (checked[1] + checked[2] * grid_size$x)),
         value = -9999,
         .before = 0)
   }
