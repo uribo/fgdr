@@ -44,12 +44,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
 
   if (identical(checked, c(0, 0))) {
     df_dem_full <-
-      df_dem %>%
-      tibble::add_row(
-        type = rep("\u30c7\u30fc\u30bf\u306a\u3057",
-                   times = (purrr::reduce(grid_size, `*`) - nrow(.))),
-        value = -9999
-      )
+      df_dem
   } else {
     df_dem_full <-
       df_dem %>%
