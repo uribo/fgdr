@@ -39,7 +39,8 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
     as.character() %>%
     utils::read.delim(text = ., sep = ",",
                stringsAsFactors = FALSE,
-               col.names = c("type", "value"))
+               col.names = c("type", "value"),
+               header = FALSE)
 
   if (identical(checked, c(0, 0))) {
     df_dem_full <-
