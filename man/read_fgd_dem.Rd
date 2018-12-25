@@ -15,5 +15,5 @@ read_fgd_dem(file, resolution = c(5, 10), return_class = c("df",
 \item{return_class}{one of return object class: 'df' (data.frame), 'raster'}
 }
 \description{
-Read and Parse FGD's XML dem file
+Supporting FGD Version 4.1 (2016/10/31)
 }

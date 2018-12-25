@@ -1,4 +1,6 @@
-#' Read and Parse FGD's XML dem file
+#' @title Read and Parse FGD's XML dem file
+#'
+#' @description Supporting FGD Version 4.1 (2016/10/31)
 #'
 #' @inheritParams read_fgd
 #' @param resolution the number of dem mesh size resolution: 5m or 10m

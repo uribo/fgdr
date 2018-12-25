@@ -1,4 +1,6 @@
-#' Read and Parse FGD's XML file
+#' @title Read and Parse FGD's XML file
+#'
+#' @description Supporting FGD Version 4.1 (2016/10/31)
 #'
 #' @param file Path to XML file
 #' @import sf

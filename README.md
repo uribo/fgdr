@@ -5,7 +5,7 @@
 
 このパッケージは、国土地理院 基盤地図情報 (**FGD**: Fundermental Geographic Data
 <https://fgd.gsi.go.jp/download/menu.php>)
-からダウンロードしたデータをR上で扱うためにデータの変換を行う関数を提供します。
+からダウンロードしたデータ(バージョン4.1に対応)をR上で扱うためにデータの変換を行う関数を提供します。
 
 ## Installation
 

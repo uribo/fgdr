@@ -10,5 +10,5 @@ read_fgd(file)
 \item{file}{Path to XML file}
 }
 \description{
-Read and Parse FGD's XML file
+Supporting FGD Version 4.1 (2016/10/31)
 }
