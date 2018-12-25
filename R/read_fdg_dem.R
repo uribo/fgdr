@@ -44,6 +44,8 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
                col.names = c("type", "value"),
                header = FALSE)
 
+  df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
+
   if (identical(checked, c(0, 0))) {
     df_dem_full <-
       df_dem
@@ -53,7 +55,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
       tibble::add_row(
         type = rep("\u30c7\u30fc\u30bf\u306a\u3057",
                    times = (checked[1] + checked[2] * grid_size$x)),
-        value = -9999,
+        value = NA_real_,
         .before = 0)
   }
 
@@ -63,7 +65,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
       tibble::add_row(
         type = rep("\u30c7\u30fc\u30bf\u306a\u3057",
                    times = (purrr::reduce(grid_size, `*`) - nrow(.))),
-        value = -9999
+        value = NA_real_
       )
   }
 

@@ -15,7 +15,7 @@ test_that("Successed on dummies", {
                  resolution = 5,
                  return_class = "raster")
   expect_s4_class(res, "RasterLayer")
-  expect_equal(unique(raster::getValues(res)), -9999)
+  expect_equal(unique(raster::getValues(res)), c(-9999L, NA_real_))
 
   res <-
     read_fgd_dem("FG-GML-0000-10-dem10b-dummy.xml",
@@ -24,5 +24,6 @@ test_that("Successed on dummies", {
   expect_s3_class(res, "tbl_df")
   expect_equal(dim(res), c(843750, 2))
   expect_named(res, c("type", "value"))
+  expect_equal(unique(res$value), c(-9999L, NA_real_))
 
 })
