@@ -39,7 +39,6 @@ read_fgd <- function(file) {
 
     res <-
       xml_parsed %>%
-      elem_to_line() %>%
       sf::st_sf(
         gml_id = ids,
         type = type,
@@ -96,7 +95,6 @@ read_fgd <- function(file) {
 
     res <-
       xml_parsed %>%
-      elem_to_line() %>%
       sf::st_sf(
         gml_id = ids,
         bdry_type = bdry_type,
@@ -151,7 +149,6 @@ read_fgd <- function(file) {
 
     res <-
       xml_parsed %>%
-      elem_to_line() %>%
       sf::st_sf(
         gml_id = ids,
         type = type,
@@ -172,7 +169,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           adm_name = nms,
@@ -194,8 +190,7 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           adm_name = nms,
-          geometry = .
-        )
+          geometry = .)
 
     }
   }
@@ -215,7 +210,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           bld_type = bld_type,
@@ -229,7 +223,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           bld_type = bld_type,
@@ -339,7 +332,6 @@ read_fgd <- function(file) {
 
     res <-
       xml_parsed %>%
-      elem_to_line() %>%
       sf::st_sf(
         gml_id = ids,
         bld_type = type,
@@ -366,7 +358,6 @@ read_fgd <- function(file) {
 
     res <-
       xml_parsed %>%
-      elem_to_line() %>%
       sf::st_sf(
         gml_id = ids,
         type = type,
@@ -390,7 +381,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
@@ -400,7 +390,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
@@ -425,7 +414,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
@@ -438,7 +426,6 @@ read_fgd <- function(file) {
 
       res <-
         xml_parsed %>%
-        elem_to_line() %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
