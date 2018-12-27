@@ -12,12 +12,13 @@ fgd_line_parse <- function(file) {
   if (!file_info$type %in% c("AdmBdry", "BldL",
                              "Cntr",
                              "CommBdry",
+                             "Cstline",
                              "RailCL",
                              "RdCompt", "RdEdg",
                              "WA", "WL",
                              "WStrA", "WStrL",
                              "AdmArea", "BldA")) {
-   rlang::abort("input irregular type file")
+    rlang::abort("input irregular type file")
   }
 
   if (file_info$type %in% c("AdmArea")) {
@@ -27,7 +28,7 @@ fgd_line_parse <- function(file) {
       .line_parse()
   }
 
-  if (file_info$type %in% c("AdmBdry", "BldL", "Cntr", "CommBdry",
+  if (file_info$type %in% c("AdmBdry", "BldL", "Cntr", "CommBdry", "Cstline",
                             "RailCL", "RdCompt", "RdEdg", "WL", "WStrL")) {
     res <-
       file_info$xml_docs %>%
@@ -56,13 +57,13 @@ fgd_point_parse <- function(file) {
   }
 
   res <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/gml:Point/gml:pos") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
-      purrr::flatten() %>%
-      purrr::map(~ as.numeric(rev(.x)))
+    file_info$xml_docs %>%
+    xml2::xml_find_all("/*/*/*/gml:Point/gml:pos") %>%
+    xml2::xml_contents() %>%
+    as.character() %>%
+    purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
+    purrr::flatten() %>%
+    purrr::map(~ as.numeric(rev(.x)))
 
   res
 

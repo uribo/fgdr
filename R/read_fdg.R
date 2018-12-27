@@ -136,6 +136,25 @@ read_fgd <- function(file) {
 
   }
 
+  if (file_info$type == "Cstline") {
+    xml_parsed <-
+      fgd_line_parse(file)
+
+    type <-
+      file_info$xml_docs %>%
+      xml2::xml_find_all("/*/*/*[6]") %>%
+      xml2::xml_contents() %>%
+      as.character()
+
+    res <-
+      xml_parsed %>%
+      sf::st_sf(
+        gml_id = ids,
+        type = type,
+        geometry = .)
+
+  }
+
   if (file_info$type %in% c("AdmBdry")) {
 
     xml_parsed <-
