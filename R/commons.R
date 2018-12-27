@@ -74,6 +74,18 @@ fgd_point_parse <- function(file) {
 
 }
 
+
+elem_to_line <- function(xml_parsed) {
+
+  xml_parsed %>%
+    purrr::map(
+      ~ sf::st_linestring(matrix(unlist(.x),
+                                 ncol = 2,
+                                 byrow = TRUE))) %>%
+    sf::st_sfc(crs = 4326)
+
+}
+
 fgd_file_info <- function(file, ...) {
 
   xmls <-
