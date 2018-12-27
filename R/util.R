@@ -58,12 +58,15 @@ set_coords <- function(raster, meshcode){
 .line_parse <- function(xml_node) {
   xml_node %>%
     xml2::xml_contents() %>%
+    xml2::xml_text(trim = TRUE) %>%
+    stringr::str_split("\n") %>%
+    purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
     purrr::map(
-      ~ xml2::xml_text(.x, trim = TRUE) %>%
-        stringr::str_split("\n") %>%
-        purrr::flatten() %>%
-        purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
-        purrr::flatten() %>%
-        purrr::map(~ as.numeric(rev(.x)))
-    )
+      ~ purrr::flatten_chr(.x) %>%
+        rev() %>%
+        as.numeric() %>%
+        matrix(., , 2, byrow = TRUE)) %>%
+    purrr::map(
+      ~ sf::st_linestring(.x)) %>%
+    sf::st_sfc(crs = 4326)
 }

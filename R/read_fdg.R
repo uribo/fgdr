@@ -38,19 +38,12 @@ read_fgd <- function(file) {
       as.numeric()
 
     res <-
-      list(xml_parsed, ids, type, alti) %>%
-      purrr::pmap(
-        ~ sf::st_linestring(matrix(unlist(..1),
-                                   ncol = 2,
-                                   byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
-          sf::st_sf(
-            gml_id = ..2,
-            type = ..3,
-            alti = ..4,
-            geometry = .
-          )
-      )
+      xml_parsed %>%
+      sf::st_sf(
+        gml_id = ids,
+        type = type,
+        alti = alti,
+        geometry = .)
 
   }
 
@@ -101,19 +94,12 @@ read_fgd <- function(file) {
       as.character()
 
     res <-
-      list(xml_parsed, ids, bdry_type) %>%
-      purrr::pmap(
-        ~ sf::st_linestring(matrix(unlist(..1),
-                                   ncol = 2,
-                                   byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
-          sf::st_sf(
-            gml_id = ..2,
-            bdry_type = ..3,
-            geometry = .
-          )
-      ) %>%
-      purrr::reduce(rbind)
+      xml_parsed %>%
+      sf::st_sf(
+        gml_id = ids,
+        bdry_type = bdry_type,
+        geometry = .)
+
   }
 
   if (file_info$type %in% c("CommPt")) {
@@ -162,19 +148,11 @@ read_fgd <- function(file) {
       as.character()
 
     res <-
-      list(xml_parsed, ids, type) %>%
-      purrr::pmap(
-        ~ sf::st_linestring(matrix(unlist(..1),
-                              ncol = 2,
-                              byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
-          sf::st_sf(
-            gml_id = ..2,
-            type = ..3,
-            geometry = .
-          )
-      ) %>%
-      purrr::reduce(rbind)
+      xml_parsed %>%
+      sf::st_sf(
+        gml_id = ids,
+        type = type,
+        geometry = .)
 
   }
 
@@ -190,21 +168,14 @@ read_fgd <- function(file) {
         fgd_line_parse(file)
 
       res <-
-        list(xml_parsed, ids, nms) %>%
-        purrr::pmap(
-          ~ sf::st_linestring(matrix(unlist(..1),
-                                     ncol = 2,
-                                     byrow = TRUE)) %>%
-            sf::st_sfc(crs = 4326) %>%
-            sf::st_sf(
-              gml_id = ..2,
-              adm_name = ..3,
-              geometry = .
-            ) %>%
-            sf::st_polygonize() %>%
-            sf::st_collection_extract("POLYGON")
-        ) %>%
-        purrr::reduce(rbind)
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          adm_name = nms,
+          geometry = .) %>%
+        sf::st_polygonize() %>%
+        sf::st_collection_extract("POLYGON")
+
     }
 
     if (file_info$type %in% c("AdmPt")) {
@@ -219,8 +190,7 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           adm_name = nms,
-          geometry = .
-        )
+          geometry = .)
 
     }
   }
@@ -236,49 +206,29 @@ read_fgd <- function(file) {
     xml_parsed <-
       fgd_line_parse(file)
 
-      if (file_info$type == "BldA") {
+    if (file_info$type == "BldA") {
 
-        res <-
-          list(xml_parsed, ids, bld_type) %>%
-          purrr::pmap(
-            ~ sf::st_linestring(matrix(unlist(..1),
-                                       ncol = 2,
-                                       byrow = TRUE)) %>%
-              sf::st_sfc(crs = 4326) %>%
-              sf::st_sf(
-                gml_id = ..2,
-                bld_type = ..3,
-                geometry = .
-              ) %>%
-              sf::st_polygonize() %>%
-              sf::st_collection_extract("POLYGON"))
+      res <-
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          bld_type = bld_type,
+          geometry = .) %>%
+        sf::st_polygonize() %>%
+        sf::st_collection_extract("POLYGON")
 
-        if (length(res) >= 10000) {
-          rlang::inform("There are over 10,000 elements. Because there are many cases, will be return it as a list.")
-        } else {
-          res <-
-            res %>%
-            purrr::reduce(rbind)
-        }
-      }
+    }
 
     if (file_info$type == "BldL") {
 
-        res <-
-          list(xml_parsed, ids, bld_type) %>%
-          purrr::pmap(
-            ~ sf::st_linestring(matrix(unlist(..1),
-                                       ncol = 2,
-                                       byrow = TRUE)) %>%
-              sf::st_sfc(crs = 4326) %>%
-              sf::st_sf(
-                gml_id = ..2,
-                bld_type = ..3,
-                geometry = .
-              )
-          )
+      res <-
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          bld_type = bld_type,
+          geometry = .)
 
-      }
+    }
   }
 
   if (file_info$type %in% c("GCP")) {
@@ -381,19 +331,11 @@ read_fgd <- function(file) {
       as.character()
 
     res <-
-      list(xml_parsed, ids, type) %>%
-      purrr::pmap(
-        ~ sf::st_linestring(matrix(unlist(..1),
-                                   ncol = 2,
-                                   byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
-          sf::st_sf(
-            gml_id = ..2,
-            type = ..3,
-            geometry = .
-          )
-      ) %>%
-      purrr::reduce(rbind)
+      xml_parsed %>%
+      sf::st_sf(
+        gml_id = ids,
+        bld_type = type,
+        geometry = .)
 
   }
 
@@ -415,27 +357,12 @@ read_fgd <- function(file) {
       as.character()
 
     res <-
-      list(xml_parsed, ids, type, adm_office) %>%
-      purrr::pmap(
-        ~ sf::st_linestring(matrix(unlist(..1),
-                                   ncol = 2,
-                                   byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
-          sf::st_sf(
-            gml_id = ..2,
-            type = ..3,
-            adm_office = ..4,
-            geometry = .
-          )
-      )
-
-    if (length(res) >= 10000) {
-      rlang::inform("There are over 10,000 elements. Because there are many cases, will be return it as a list.")
-    } else {
-      res <-
-        res %>%
-        purrr::reduce(rbind)
-    }
+      xml_parsed %>%
+      sf::st_sf(
+        gml_id = ids,
+        type = type,
+        adm_office = adm_office,
+        geometry = .)
 
   }
 
@@ -451,36 +378,24 @@ read_fgd <- function(file) {
       as.character()
 
     if (file_info$type %in% c("WL")) {
+
       res <-
-        list(xml_parsed, ids, type) %>%
-        purrr::pmap(
-          ~ sf::st_linestring(matrix(unlist(..1),
-                                     ncol = 2,
-                                     byrow = TRUE)) %>%
-            sf::st_sfc(crs = 4326) %>%
-            sf::st_sf(
-              gml_id = ..2,
-              type = ..3,
-              geometry = .
-            )
-        )
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          type = type,
+          geometry = .)
+
     } else if (file_info$type %in% c("WA")) {
+
       res <-
-        list(xml_parsed, ids, type) %>%
-        purrr::pmap(
-          ~ sf::st_linestring(matrix(unlist(..1),
-                                     ncol = 2,
-                                     byrow = TRUE)) %>%
-            sf::st_sfc(crs = 4326) %>%
-            sf::st_sf(
-              gml_id = ..2,
-              type = ..3,
-              geometry = .
-            ) %>%
-            sf::st_polygonize() %>%
-            sf::st_collection_extract("POLYGON")
-        ) %>%
-        purrr::reduce(rbind)
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          type = type,
+          geometry = .) %>%
+        sf::st_polygonize() %>%
+        sf::st_collection_extract("POLYGON")
     }
   }
 
@@ -496,37 +411,26 @@ read_fgd <- function(file) {
       as.character()
 
     if (file_info$type %in% c("WStrA")) {
+
       res <-
-        list(xml_parsed, ids, type) %>%
-        purrr::pmap(
-          ~ sf::st_linestring(matrix(unlist(..1),
-                                     ncol = 2,
-                                     byrow = TRUE)) %>%
-            sf::st_sfc(crs = 4326) %>%
-            sf::st_sf(
-              gml_id = ..2,
-              type = ..3,
-              geometry = .
-            ) %>%
-            sf::st_polygonize() %>%
-            sf::st_collection_extract("POLYGON")
-        ) %>%
-        purrr::reduce(rbind)
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          type = type,
+          geometry = .) %>%
+        sf::st_polygonize() %>%
+        sf::st_collection_extract("POLYGON")
+
+
     } else if (file_info$type %in% c("WStrL")) {
+
       res <-
-        list(xml_parsed, ids, type) %>%
-        purrr::pmap(
-          ~ sf::st_linestring(matrix(unlist(..1),
-                                     ncol = 2,
-                                     byrow = TRUE)) %>%
-            sf::st_sfc(crs = 4326) %>%
-            sf::st_sf(
-              gml_id = ..2,
-              type = ..3,
-              geometry = .
-            )
-        ) %>%
-        purrr::reduce(rbind)
+        xml_parsed %>%
+        sf::st_sf(
+          gml_id = ids,
+          type = type,
+          geometry = .)
+
     }
   }
 
