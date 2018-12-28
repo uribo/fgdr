@@ -193,7 +193,7 @@ read_fgd <- function(file) {
           adm_name = nms,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
 
     }
 
@@ -234,7 +234,7 @@ read_fgd <- function(file) {
           bld_type = bld_type,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
 
     }
 
@@ -414,7 +414,7 @@ read_fgd <- function(file) {
           type = type,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
     }
   }
 
@@ -438,7 +438,7 @@ read_fgd <- function(file) {
           type = type,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
 
 
     } else if (file_info$type %in% c("WStrL")) {
