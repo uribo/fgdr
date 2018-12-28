@@ -21,6 +21,7 @@ RUN set -x && \
     raster \
     rgdal \
     reprex \
+    roxygen2 \
     sf \
     usethis \
     zeallot && \
