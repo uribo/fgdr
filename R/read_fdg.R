@@ -21,52 +21,22 @@ read_fgd <- function(file) {
 
   if (file_info$type %in% c("Cntr")) {
 
-    xml_parsed <-
-      fgd_line_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[6]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    alti <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      as.numeric()
-
     res <-
-      xml_parsed %>%
       sf::st_sf(
         gml_id = ids,
-        type = type,
-        alti = alti,
-        geometry = .)
+        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        alti = extract_xml_value(file_info$xml_docs, name = "alti", name_length = 7),
+        geometry = fgd_line_parse(file))
 
   }
 
   if (file_info$type %in% c("ElevPt")) {
 
-    xml_parsed <-
-      fgd_point_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    alti <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[8]") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      as.numeric()
-
     res <-
-      list(xml_parsed, ids, type, alti) %>%
+      list(xml_parsed = fgd_point_parse(file),
+           ids,
+           type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 8),
+           alti = extract_xml_value(file_info$xml_docs, name = "alti", name_length = 8)) %>%
       purrr::pmap(
         ~ sf::st_point(matrix(unlist(..1),
                               ncol = 2,
@@ -84,42 +54,22 @@ read_fgd <- function(file) {
   }
 
   if (file_info$type %in% c("CommBdry")) {
-    xml_parsed <-
-      fgd_line_parse(file)
-
-    bdry_type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
 
     res <-
-      xml_parsed %>%
       sf::st_sf(
         gml_id = ids,
-        bdry_type = bdry_type,
-        geometry = .)
+        bdry_type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        geometry = fgd_line_parse(file))
 
   }
 
   if (file_info$type %in% c("CommPt")) {
 
-    xml_parsed <-
-      fgd_point_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    nms <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[8]") %>%
-      xml2::xml_text()
-
     res <-
-      list(xml_parsed, ids, nms, type) %>%
+      list(xml_parsed = fgd_point_parse(file),
+           ids,
+           nms = extract_xml_value(file_info$xml_docs, name = "name", name_length = 9),
+           type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 9)) %>%
       purrr::pmap(
         ~ sf::st_point(matrix(unlist(..1),
                               ncol = 2,
@@ -137,61 +87,37 @@ read_fgd <- function(file) {
   }
 
   if (file_info$type == "Cstline") {
-    xml_parsed <-
-      fgd_line_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[6]") %>%
-      xml2::xml_contents() %>%
-      as.character()
 
     res <-
-      xml_parsed %>%
       sf::st_sf(
         gml_id = ids,
-        type = type,
-        geometry = .)
+        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 6),
+        geometry = fgd_line_parse(file))
 
   }
 
   if (file_info$type %in% c("AdmBdry")) {
 
-    xml_parsed <-
-      fgd_line_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
     res <-
-      xml_parsed %>%
       sf::st_sf(
         gml_id = ids,
-        type = type,
-        geometry = .)
+        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        geometry = fgd_line_parse(file))
 
   }
 
   if (file_info$type %in% c("AdmArea", "AdmPt")) {
+
     nms <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[8]") %>%
-      xml2::xml_text()
+      extract_xml_value(file_info$xml_docs, name = "name", name_length = 9)
 
     if (file_info$type %in% c("AdmArea")) {
 
-      xml_parsed <-
-        fgd_line_parse(file)
-
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           adm_name = nms,
-          geometry = .) %>%
+          geometry = fgd_line_parse(file)) %>%
         sf::st_polygonize() %>%
         extract_polygon()
 
@@ -199,40 +125,33 @@ read_fgd <- function(file) {
 
     if (file_info$type %in% c("AdmPt")) {
 
-      xml_parsed <-
-        fgd_point_parse(file)
-
       res <-
-        xml_parsed %>%
-        purrr::map(st_point) %>%
-        sf::st_sfc(crs = 4326) %>%
         sf::st_sf(
           gml_id = ids,
           adm_name = nms,
-          geometry = .)
+          geometry =
+            fgd_point_parse(file) %>%
+            purrr::map(st_point) %>%
+            sf::st_sfc(crs = 4326))
 
     }
   }
 
   if (file_info$type %in% c("BldA", "BldL")) {
 
-    bld_type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[6]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
     xml_parsed <-
       fgd_line_parse(file)
+
+    bld_type <-
+      extract_xml_value(file_info$xml_docs, name = "type", name_length = 6)
 
     if (file_info$type == "BldA") {
 
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           bld_type = bld_type,
-          geometry = .) %>%
+          geometry = xml_parsed) %>%
         sf::st_polygonize() %>%
         extract_polygon()
 
@@ -241,81 +160,28 @@ read_fgd <- function(file) {
     if (file_info$type == "BldL") {
 
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           bld_type = bld_type,
-          geometry = .)
+          geometry = xml_parsed)
 
     }
   }
 
   if (file_info$type %in% c("GCP")) {
 
-    xml_parsed <-
-      fgd_point_parse(file)
-
-    org_name <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[8]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    gcp_class <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[9]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    gcp_code <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[10]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    nms <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[11]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    breite <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[12]") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      as.double()
-
-    leange <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[13]") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      as.double()
-
-    alti <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[14]") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      as.double()
-
-    alti_acc <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[15]") %>%
-      xml2::xml_contents() %>%
-      as.character() %>%
-      as.integer()
-
     res <-
-      list(xml_parsed, ids, org_name, type,
-           gcp_class, gcp_code, nms, breite, leange, alti, alti_acc) %>%
+      list(xml_parsed = fgd_point_parse(file),
+           ids,
+           org_name = extract_xml_value(file_info$xml_docs, name = "orgName", name_length = 15),
+           type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 15),
+           gcp_class = extract_xml_value(file_info$xml_docs, name = "gcpClass", name_length = 15),
+           gcp_code = extract_xml_value(file_info$xml_docs, name = "gcpCode", name_length = 15),
+           nms = extract_xml_value(file_info$xml_docs, name = "name", name_length = 15),
+           breite = extract_xml_value(file_info$xml_docs, name = "B", name_length = 15),
+           leange = extract_xml_value(file_info$xml_docs, name = "L", name_length = 15),
+           alti = extract_xml_value(file_info$xml_docs, name = "alti", name_length = 15),
+           alti_acc = extract_xml_value(file_info$xml_docs, name = "altiAcc", name_length = 15)) %>%
       purrr::pmap(
         ~ sf::st_point(matrix(unlist(..1),
                               ncol = 2,
@@ -340,21 +206,11 @@ read_fgd <- function(file) {
 
   if (file_info$type %in% c("RailCL")) {
 
-    xml_parsed <-
-      fgd_line_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
     res <-
-      xml_parsed %>%
       sf::st_sf(
         gml_id = ids,
-        bld_type = type,
-        geometry = .)
+        bld_type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        geometry = fgd_line_parse(file))
 
   }
 
@@ -374,28 +230,23 @@ read_fgd <- function(file) {
       fgd_line_parse(file)
 
     type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[6]") %>%
-      xml2::xml_contents() %>%
-      as.character()
+      extract_xml_value(file_info$xml_docs, name = "type", name_length = 6)
 
     if (file_info$type %in% c("WL")) {
 
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = .)
+          geometry = xml_parsed)
 
     } else if (file_info$type %in% c("WA")) {
 
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = .) %>%
+          geometry = xml_parsed) %>%
         sf::st_polygonize() %>%
         extract_polygon()
     }
@@ -407,19 +258,15 @@ read_fgd <- function(file) {
       fgd_line_parse(file)
 
     type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
+      extract_xml_value(file_info$xml_docs, name = "type", name_length = 7)
 
     if (file_info$type %in% c("WStrA")) {
 
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = .) %>%
+          geometry = xml_parsed) %>%
         sf::st_polygonize() %>%
         extract_polygon()
 
@@ -427,11 +274,10 @@ read_fgd <- function(file) {
     } else if (file_info$type %in% c("WStrL")) {
 
       res <-
-        xml_parsed %>%
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = .)
+          geometry = xml_parsed)
 
     }
   }
