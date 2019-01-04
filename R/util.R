@@ -70,3 +70,100 @@ set_coords <- function(raster, meshcode){
       ~ sf::st_linestring(.x)) %>%
     sf::st_sfc(crs = 4326)
 }
+
+extract_polygon <- function(d) {
+
+  rowname <- NULL
+
+  na_rows <-
+    which(st_is_empty(d$geometry) == TRUE)
+
+  if (length(na_rows) > 0) {
+    d_empty <-
+      d[na_rows, ]
+
+    d_fill <-
+      d[-na_rows, ] %>%
+      sf::st_collection_extract("POLYGON")
+
+    res <-
+      rbind(d_empty, d_fill) %>%
+      tibble::rownames_to_column()
+
+    res$rowname <- as.numeric(res$rowname)
+
+    res <-
+      res[with(res, order(rowname)), ]
+
+    res <-
+      base::subset(res, select = -rowname)
+  } else {
+
+    res <-
+      d %>%
+      sf::st_collection_extract("POLYGON") %>%
+      tibble::remove_rownames()
+  }
+
+  res
+}
+
+extract_xml_value <- function(x, name, name_length = 8) {
+
+  . <- NULL
+
+  x1 <-
+    x %>%
+    xml2::xml_find_all("/*/*") %>%
+    purrr::set_names(seq(from = 1, to = length(.)))
+
+  contents <-
+    x %>%
+    xml2::xml_find_all("/*/*/*")
+
+  contents_name =
+    contents %>%
+    xml2::xml_name()
+
+  x_loc <-
+    which(contents_name %in% name)
+  x_vec =
+    contents[x_loc] %>%
+    xml2::xml_contents() %>%
+    as.character()
+
+  if (length(x1) - 2 != length(x_vec)) {
+    x2 <-
+      seq(from = 3, to = length(x1)) %>%
+      purrr::map_lgl(
+        ~ x1[[.x]] %>%
+          xml2::xml_length() == name_length) %>%
+      purrr::set_names(seq(from = 3, to = length(x1)))
+
+    na_loc <-
+      x2 %>%
+      purrr::keep(~ .x == FALSE) %>%
+      names() %>%
+      as.numeric()
+
+    x_vec <-
+      seq(1, length(x_vec)) %>%
+      purrr::map(
+        function(x) {
+          tmp = x %in% na_loc
+          if (tmp == TRUE) {
+            res = c(NA_real_, x_vec[x])
+          } else {
+            res = x_vec[x]
+          }
+
+          res
+        }
+      ) %>%
+      purrr::reduce(c)
+
+  }
+
+  utils::type.convert(x_vec, as.is = TRUE)
+
+}

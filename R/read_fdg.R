@@ -193,7 +193,7 @@ read_fgd <- function(file) {
           adm_name = nms,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
 
     }
 
@@ -234,7 +234,7 @@ read_fgd <- function(file) {
           bld_type = bld_type,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
 
     }
 
@@ -360,29 +360,12 @@ read_fgd <- function(file) {
 
   if (file_info$type %in% c("RdCompt", "RdEdg")) {
 
-    xml_parsed <-
-      fgd_line_parse(file)
-
-    type <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[7]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
-    adm_office <-
-      file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*[8]") %>%
-      xml2::xml_contents() %>%
-      as.character()
-
     res <-
-      xml_parsed %>%
       sf::st_sf(
         gml_id = ids,
-        type = type,
-        adm_office = adm_office,
-        geometry = .)
-
+        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 8),
+        adm_office = extract_xml_value(file_info$xml_docs, name = "admOffice", name_length = 8),
+        geometry = fgd_line_parse(file))
   }
 
   if (file_info$type %in% c("WA", "WL")) {
@@ -414,7 +397,7 @@ read_fgd <- function(file) {
           type = type,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
     }
   }
 
@@ -438,7 +421,7 @@ read_fgd <- function(file) {
           type = type,
           geometry = .) %>%
         sf::st_polygonize() %>%
-        sf::st_collection_extract("POLYGON")
+        extract_polygon()
 
 
     } else if (file_info$type %in% c("WStrL")) {
