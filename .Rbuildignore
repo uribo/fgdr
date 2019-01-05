@@ -1,3 +1,4 @@
+^\.lintr$
 ^codecov\.yml$
 ^\.travis\.yml$
 ^README\.Rmd$
