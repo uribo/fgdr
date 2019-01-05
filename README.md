@@ -3,6 +3,11 @@
 
 # fgdr
 
+[![Travis build
+status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr)
+[![Codecov test
+coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://codecov.io/gh/uribo/fgdr?branch=master)
+
 このパッケージは、国土地理院 基盤地図情報 (**FGD**: Fundermental Geographic Data
 <https://fgd.gsi.go.jp/download/menu.php>)
 からダウンロードしたデータ(バージョン4.1に対応)をR上で扱うためにデータの変換を行う関数を提供します。

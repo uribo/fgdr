@@ -24,4 +24,7 @@ BugReports: https://github.com/uribo/fgdr/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Suggests: 
-    testthat
+    testthat,
+    covr
+Depends: 
+    R (>= 3.1)
