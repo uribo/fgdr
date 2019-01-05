@@ -1,8 +1,12 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
-cache: packages
+sudo: required
+dist: trusty
+cache:
+  - packages
+  - ccache
+latex: false
 
 r:
 - 3.1
@@ -12,5 +16,16 @@ r:
 - release
 - devel
 
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
+    packages:
+      - libudunits2-dev
+      - libnetcdf-dev
+      - libproj-dev
+      - libgeos-dev
+      - libgdal-dev
+
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - R -q -e 'covr::codecov(quiet = FALSE); lintr::lint_package()'
