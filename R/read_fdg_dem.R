@@ -22,10 +22,10 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
 
   if (resolution == 5) {
     grid_size <- list(x = 225, y = 150)
-    xml_opts = "NOBLANKS"
+    xml_opts <- "NOBLANKS"
   } else if (resolution == 10) {
     grid_size <- list(x = 1125, y = 750)
-    xml_opts = "HUGE"
+    xml_opts <- "HUGE"
   }
 
   checked <-
@@ -36,7 +36,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
 
   df_dem <-
     file_info$xml_docs %>%
-    xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>%
+    xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>% # nolint
     xml2::xml_contents() %>%
     as.character() %>%
     utils::read.delim(text = ., sep = ",",

@@ -13,7 +13,7 @@ dem_check <- function(file, .verbose = TRUE, ...) {
   } else {
     value_order <-
       file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:sequenceRule") %>%
+      xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:sequenceRule") %>% # nolint
       xml2::xml_attr(attr = "order")
 
     if (value_order != "+x-y")
@@ -21,7 +21,7 @@ dem_check <- function(file, .verbose = TRUE, ...) {
 
     start_point <-
       file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:startPoint") %>%
+      xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:startPoint") %>% # nolint
       xml2::xml_text() %>%
       stringr::str_split("[[:space:]]") %>%
       unlist() %>%
@@ -65,7 +65,7 @@ set_coords <- function(raster, meshcode){
       ~ purrr::flatten_chr(.x) %>%
         rev() %>%
         as.numeric() %>%
-        matrix(., , 2, byrow = TRUE)) %>%
+        matrix(., ncol = 2, byrow = TRUE)) %>%
     purrr::map(
       ~ sf::st_linestring(.x)) %>%
     sf::st_sfc(crs = 4326)
@@ -114,20 +114,20 @@ extract_xml_value <- function(x, name, name_length = 8) {
 
   x1 <-
     x %>%
-    xml2::xml_find_all("/*/*") %>%
+    xml2::xml_find_all("/*/*") %>% # nolint
     purrr::set_names(seq(from = 1, to = length(.)))
 
   contents <-
     x %>%
-    xml2::xml_find_all("/*/*/*")
+    xml2::xml_find_all("/*/*/*") # nolint
 
-  contents_name =
+  contents_name <-
     contents %>%
     xml2::xml_name()
 
   x_loc <-
     which(contents_name %in% name)
-  x_vec =
+  x_vec <-
     contents[x_loc] %>%
     xml2::xml_contents() %>%
     as.character()
@@ -150,11 +150,11 @@ extract_xml_value <- function(x, name, name_length = 8) {
       seq(1, length(x_vec)) %>%
       purrr::map(
         function(x) {
-          tmp = x %in% na_loc
+          tmp <- x %in% na_loc
           if (tmp == TRUE) {
-            res = c(NA_real_, x_vec[x])
+            res <- c(NA_real_, x_vec[x])
           } else {
-            res = x_vec[x]
+            res <- x_vec[x]
           }
 
           res

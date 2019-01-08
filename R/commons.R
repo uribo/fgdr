@@ -24,7 +24,7 @@ fgd_line_parse <- function(file) {
   if (file_info$type %in% c("AdmArea")) {
     res <-
       file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
+      xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>% # nolint
       .line_parse()
   }
 
@@ -32,14 +32,14 @@ fgd_line_parse <- function(file) {
                             "RailCL", "RdCompt", "RdEdg", "WL", "WStrL")) {
     res <-
       file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
+      xml2::xml_find_all("/*/*/*/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>% # nolint
       .line_parse()
   }
 
   if (file_info$type %in% c("BldA", "WA", "WStrA")) {
     res <-
       file_info$xml_docs %>%
-      xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>%
+      xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>% # nolint
       .line_parse()
 
   }
@@ -58,7 +58,7 @@ fgd_point_parse <- function(file) {
 
   res <-
     file_info$xml_docs %>%
-    xml2::xml_find_all("/*/*/*/gml:Point/gml:pos") %>%
+    xml2::xml_find_all("/*/*/*/gml:Point/gml:pos") %>% # nolint
     xml2::xml_contents() %>%
     as.character() %>%
     purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
@@ -102,14 +102,14 @@ fgd_dem_file_info <- function(file, ...) {
 
   is5m <-
     file_info$xml_docs %>%
-    xml2::xml_find_first("/*/*[3]/*[6]") %>%
+    xml2::xml_find_first("/*/*[3]/*[6]") %>% # nolint
     xml2::xml_contents() %>%
     as.character() %>%
     stringr::str_detect("5m")
 
   meshcode <-
     file_info$xml_docs %>%
-    xml2::xml_find_all("/*/*[3]/*[7]") %>%
+    xml2::xml_find_all("/*/*[3]/*[7]") %>% # nolint
     xml2::xml_contents() %>%
     as.character()
 

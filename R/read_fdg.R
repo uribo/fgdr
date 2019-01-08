@@ -9,14 +9,12 @@
 #' @export
 read_fgd <- function(file) {
 
-  . <- NULL
-
   file_info <-
     fgd_file_info(file)
 
   ids <-
     file_info$xml_docs %>%
-    xml2::xml_find_all("/*/*/*[3]") %>%
+    xml2::xml_find_all("/*/*/*[3]") %>% # nolint
     xml2::xml_attr("id")
 
   if (file_info$type %in% c("Cntr")) {
