@@ -41,7 +41,7 @@ library(fgdr)
 library(raster)
 #> Loading required package: sp
 library(sf)
-#> Linking to GEOS 3.7.0, GDAL 2.3.2, PROJ 5.2.0
+#> Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0
 ```
 
 ## 基本項目
@@ -98,17 +98,17 @@ read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
     #> # A tibble: 33,750 x 2
     #>    type       value
     #>    <chr>      <dbl>
-    #>  1 データなし -9999
-    #>  2 データなし -9999
-    #>  3 データなし -9999
-    #>  4 データなし -9999
-    #>  5 データなし -9999
-    #>  6 データなし -9999
-    #>  7 データなし -9999
-    #>  8 データなし -9999
-    #>  9 データなし -9999
-    #> 10 データなし -9999
-    #> # ... with 33,740 more rows
+    #>  1 データなし    NA
+    #>  2 データなし    NA
+    #>  3 データなし    NA
+    #>  4 データなし    NA
+    #>  5 データなし    NA
+    #>  6 データなし    NA
+    #>  7 データなし    NA
+    #>  8 データなし    NA
+    #>  9 データなし    NA
+    #> 10 データなし    NA
+    #> # … with 33,740 more rows
 
 デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class
 =`によりrasterを選ぶことも可能です。rasterとして読み込み、可視化する例を示します。
@@ -149,7 +149,7 @@ read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
     #> coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
     #> data source : in memory
     #> names       : layer 
-    #> values      : -9999, 316  (min, max)
+    #> values      : 5, 316  (min, max)
 
 ## ライセンス
 

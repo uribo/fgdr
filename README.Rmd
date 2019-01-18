@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 パッケージのインストールは、GitHub (このリポジトリ) から行います。
 
-``` r
+```{r, eval = FALSE, echo = TRUE}
 install.packages("remotes")
 remotes::install_github("uribo/fgdr")
 ```
