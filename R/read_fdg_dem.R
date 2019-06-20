@@ -14,12 +14,9 @@
 #' @importFrom utils read.delim
 #' @export
 read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "raster")) {
-
   . <- value <- NULL
-
   output_type <-
     rlang::arg_match(return_class)
-
   if (resolution == 5) {
     grid_size <- list(x = 225, y = 150)
     xml_opts <- "NOBLANKS"
@@ -27,13 +24,10 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
     grid_size <- list(x = 1125, y = 750)
     xml_opts <- "HUGE"
   }
-
   checked <-
     dem_check(file, .verbose = FALSE, options = xml_opts)
-
   file_info <-
     fgd_dem_file_info(file, options = xml_opts)
-
   df_dem <-
     file_info$xml_docs %>%
     xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>% # nolint
@@ -45,7 +39,6 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
                       col.names = c("type", "value"),
                       header = FALSE)
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
-
   if (identical(checked, c(0, 0))) {
     df_dem_full <-
       df_dem
@@ -58,7 +51,6 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
         value = NA_real_,
         .before = 0)
   }
-
   if (nrow(df_dem_full) < purrr::reduce(grid_size, `*`)) {
     df_dem_full <-
       df_dem_full %>%
@@ -68,11 +60,9 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
         value = NA_real_
       )
   }
-
   res <-
     df_dem_full %>%
     tibble::as_tibble()
-
   switch(output_type,
          df = res,
          raster = res %>%

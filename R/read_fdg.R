@@ -281,5 +281,5 @@ read_fgd <- function(file) {
   }
 
   res %>%
-    tibble::new_tibble(subclass = "sf")
+    tibble::new_tibble(subclass = "sf", nrow = nrow(res))
 }
