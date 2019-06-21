@@ -33,11 +33,8 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
     xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>% # nolint
     xml2::xml_contents() %>%
     as.character() %>%
-    utils::read.delim(text = .,
-                      sep = intToUtf8(44),
-                      stringsAsFactors = FALSE,
-                      col.names = c("type", "value"),
-                      header = FALSE)
+    readr::read_csv(col_names = c("type", "value"),
+                    col_types = c("cd"))
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
   if (identical(checked, c(0, 0))) {
     df_dem_full <-
