@@ -16,6 +16,3 @@ dem_check(file, .verbose = TRUE, ...)
 \description{
 DEM input file status check
 }
-\details{
-type AdmArea, BldA, WA
-}

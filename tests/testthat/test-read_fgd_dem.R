@@ -1,11 +1,12 @@
 context("test-read_fgd_dem")
 
 test_that("Successed on dummies", {
-
   res <-
     read_fgd_dem(file = "FG-GML-0000-00-00-DEM5A-dummy.xml",
                  resolution = 5)
   expect_is(res, "data.frame")
+  expect_identical(as.character(res[1, 1]),
+                   paste(intToUtf8(c(12381, 12398, 20182), multiple = TRUE), collapse = ""))
   expect_s3_class(res, "tbl_df")
   expect_equal(dim(res), c(33750, 2))
   expect_named(res, c("type", "value"))

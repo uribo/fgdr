@@ -1,8 +1,8 @@
 #' Line element parsed
 #'
-#' @param file XML file download from fgd
-#' @importFrom stringr str_split
-#' @importFrom xml2 read_xml xml_find_all xml_text
+#' @inheritParams dem_check
+#' @importFrom xml2 xml_find_all
+#' @importFrom rlang abort
 #' @import purrr
 #' @details type AdmArea, BldA, WA
 fgd_line_parse <- function(file) {
@@ -68,7 +68,6 @@ fgd_point_parse <- function(file) {
   res
 
 }
-
 
 elem_to_line <- function(xml_parsed) {
 

@@ -4,38 +4,36 @@ test_that("xml schema validation", {
 
   expect_warning(
     expect_true(
-      xml2::xml_validate(x = read_xml("FG-GML-0000-00-00-DEM5A-dummy.xml"),
+      xml_validate(x = read_xml("FG-GML-0000-00-00-DEM5A-dummy.xml"),
                          schema = read_xml("FGD_GMLSchema.xsd"))
     )
   )
   expect_warning(
     expect_true(
-      xml2::xml_validate(x = read_xml("FG-GML-0000-10-dem10b-dummy.xml"),
+      xml_validate(x = read_xml("FG-GML-0000-10-dem10b-dummy.xml"),
                          schema = read_xml("FGD_GMLSchema.xsd"))
     )
   )
   expect_warning(
     expect_true(
-      xml2::xml_validate(x = read_xml("FG-GML-0000-10-dem10b-dummy.xml"),
+      xml_validate(x = read_xml("FG-GML-0000-10-dem10b-dummy.xml"),
                          schema = read_xml("FGD_GMLSchema.xsd"))
     )
   )
   suppressWarnings(
     expect_true(
-      xml2::xml_validate(x = read_xml("FG-GML-000000-AdmPt-dummy.xml"),
+      xml_validate(x = read_xml("FG-GML-000000-AdmPt-dummy.xml"),
                          schema = read_xml("FGD_GMLSchema.xsd"))
     )
   )
 })
 
-test_that("dem", {
-  expect_silent(
-    expect_equal(
-      dem_check("FG-GML-0000-00-00-DEM5A-dummy.xml"),
-      c(0, 0)
-    )
-  )
-
+test_that("dem validation", {
+  expect_equal(
+      dem_check("FG-GML-0000-00-00-DEM5A-dummy.xml",
+                .verbose = TRUE,
+                options = "NOBLANKS"),
+      c("0", "0"))
   res <-
     fgd_dem_file_info("FG-GML-0000-00-00-DEM5A-dummy.xml")
   expect_is(res, "list")

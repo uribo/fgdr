@@ -36,7 +36,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
     readr::read_csv(col_names = c("type", "value"),
                     col_types = c("cd"))
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
-  if (identical(checked, c(0, 0))) {
+  if (identical(checked, c("0", "0"))) {
     df_dem_full <-
       df_dem
   } else {

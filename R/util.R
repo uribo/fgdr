@@ -1,8 +1,9 @@
 #' DEM input file status check
 #'
-#' @inherit fgd_line_parse
+#' @param file XML file download from fgd
 #' @param .verbose `logical`. suppress info input XML file's about DEM information.
 #' @param ... Additional arguments passed on to other functions.
+#' @import xml2
 dem_check <- function(file, .verbose = TRUE, ...) {
 
   file_info <-
@@ -24,15 +25,13 @@ dem_check <- function(file, .verbose = TRUE, ...) {
       xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:startPoint") %>% # nolint
       xml2::xml_text() %>%
       stringr::str_split("[[:space:]]") %>%
-      unlist() %>%
-      as.numeric()
+      unlist()
 
-    if (start_point != c(0, 0) && rlang::is_true(.verbose))
-      rlang::inform("Data is not given from the starting point.\nCheck these coordinate")
-
+    if (.verbose == TRUE)
+      if (!all.equal(start_point, c("0", "0")))
+        rlang::inform("Data is not given from the starting point.\nCheck these coordinate")
     start_point
   }
-
 }
 
 set_coords <- function(raster, meshcode){
