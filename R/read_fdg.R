@@ -24,7 +24,9 @@ read_fgd <- function(file) {
         gml_id = ids,
         type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
         alti = extract_xml_value(file_info$xml_docs, name = "alti", name_length = 7),
-        geometry = fgd_line_parse(file))
+        geometry = fgd_line_parse(file),
+        stringsAsFactors = FALSE
+        )
 
   }
 
@@ -57,7 +59,9 @@ read_fgd <- function(file) {
       sf::st_sf(
         gml_id = ids,
         bdry_type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
-        geometry = fgd_line_parse(file))
+        geometry = fgd_line_parse(file),
+        stringsAsFactors = FALSE
+        )
 
   }
 
@@ -77,7 +81,8 @@ read_fgd <- function(file) {
             gml_id = ..2,
             comm_name = ..3,
             comm_type = ..4,
-            geometry = .
+            geometry = .,
+            stringsAsFactors = FALSE
           )
       ) %>%
       purrr::reduce(rbind)
@@ -90,7 +95,9 @@ read_fgd <- function(file) {
       sf::st_sf(
         gml_id = ids,
         type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 6),
-        geometry = fgd_line_parse(file))
+        geometry = fgd_line_parse(file),
+        stringsAsFactors = FALSE
+        )
 
   }
 
@@ -100,7 +107,9 @@ read_fgd <- function(file) {
       sf::st_sf(
         gml_id = ids,
         type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
-        geometry = fgd_line_parse(file))
+        geometry = fgd_line_parse(file),
+        stringsAsFactors = FALSE
+        )
 
   }
 
@@ -115,7 +124,9 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           adm_name = nms,
-          geometry = fgd_line_parse(file)) %>%
+          geometry = fgd_line_parse(file),
+          stringsAsFactors = FALSE
+          ) %>%
         sf::st_polygonize() %>%
         extract_polygon()
 
@@ -130,7 +141,9 @@ read_fgd <- function(file) {
           geometry =
             fgd_point_parse(file) %>%
             purrr::map(st_point) %>%
-            sf::st_sfc(crs = 4326))
+            sf::st_sfc(crs = 4326),
+          stringsAsFactors = FALSE
+          )
 
     }
   }
@@ -149,7 +162,9 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           bld_type = bld_type,
-          geometry = xml_parsed) %>%
+          geometry = xml_parsed,
+          stringsAsFactors = FALSE
+          ) %>%
         sf::st_polygonize() %>%
         extract_polygon()
 
@@ -161,7 +176,9 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           bld_type = bld_type,
-          geometry = xml_parsed)
+          geometry = xml_parsed,
+          stringsAsFactors = FALSE
+          )
 
     }
   }
@@ -196,7 +213,8 @@ read_fgd <- function(file) {
             leange = ..9,
             alti = ..10,
             alti_acc = ..11,
-            geometry = .
+            geometry = .,
+            stringsAsFactors = FALSE
           )
       ) %>%
       purrr::reduce(rbind)
@@ -208,7 +226,9 @@ read_fgd <- function(file) {
       sf::st_sf(
         gml_id = ids,
         bld_type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
-        geometry = fgd_line_parse(file))
+        geometry = fgd_line_parse(file),
+        stringsAsFactors = FALSE
+        )
 
   }
 
@@ -219,7 +239,9 @@ read_fgd <- function(file) {
         gml_id = ids,
         type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 8),
         adm_office = extract_xml_value(file_info$xml_docs, name = "admOffice", name_length = 8),
-        geometry = fgd_line_parse(file))
+        geometry = fgd_line_parse(file),
+        stringsAsFactors = FALSE
+        )
   }
 
   if (file_info$type %in% c("WA", "WL")) {
@@ -236,7 +258,9 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = xml_parsed)
+          geometry = xml_parsed,
+          stringsAsFactors = FALSE
+          )
 
     } else if (file_info$type %in% c("WA")) {
 
@@ -244,7 +268,9 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = xml_parsed) %>%
+          geometry = xml_parsed,
+          stringsAsFactors = FALSE
+          ) %>%
         sf::st_polygonize() %>%
         extract_polygon()
     }
@@ -264,7 +290,8 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = xml_parsed) %>%
+          geometry = xml_parsed,
+          stringsAsFactors = FALSE) %>%
         sf::st_polygonize() %>%
         extract_polygon()
 
@@ -275,7 +302,8 @@ read_fgd <- function(file) {
         sf::st_sf(
           gml_id = ids,
           type = type,
-          geometry = xml_parsed)
+          geometry = xml_parsed,
+          stringsAsFactors = FALSE)
 
     }
   }
