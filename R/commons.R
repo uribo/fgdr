@@ -37,21 +37,16 @@ fgd_line_parse <- function(file) {
       file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:Surface/gml:patches/gml:PolygonPatch/gml:exterior/gml:Ring/gml:curveMember/gml:Curve/gml:segments/gml:LineStringSegment/gml:posList") %>% # nolint
       .line_parse()
-
   }
-
   res
 }
 
 fgd_point_parse <- function(file) {
-
   file_info <- fgd_file_info(file)
-
   if (!file_info$type %in% c("AdmPt", "CommPt", "ElevPt",
                              "GCP")) {
     rlang::abort("input irregular type file")
   }
-
   res <-
     file_info$xml_docs %>%
     xml2::xml_find_all("/*/*/*/gml:Point/gml:pos") %>% # nolint
@@ -60,13 +55,10 @@ fgd_point_parse <- function(file) {
     purrr::map(~ stringr::str_split(.x, "[:space:]")) %>%
     purrr::flatten() %>%
     purrr::map(~ as.numeric(rev(.x)))
-
   res
-
 }
 
 elem_to_line <- function(xml_parsed) {
-
   xml_parsed %>%
     purrr::map(
       ~ sf::st_linestring(matrix(unlist(.x),

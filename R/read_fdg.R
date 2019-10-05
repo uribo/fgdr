@@ -146,12 +146,10 @@ read_fgd <- function(file) { # nolint
             purrr::map(st_point) %>%
             sf::st_sfc(crs = 6668),
           stringsAsFactors = FALSE)
-
     }
   }
 
   if (file_info$type %in% c("BldA", "BldL")) {
-
     xml_parsed <-
       fgd_line_parse(file)
     bld_type <-
