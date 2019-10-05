@@ -9,3 +9,8 @@
 ^\.env$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^cran-comments\.md$
+^docs$
+^logo\.png$
+^_pkgdown\.yml$
+^pkgdown$
