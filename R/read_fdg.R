@@ -67,7 +67,7 @@ read_fgd <- function(file) { # nolint
     res <-
       sf::st_sf(
         gml_id = ids,
-        bdry_type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
         geometry = fgd_line_parse(file),
         stringsAsFactors = FALSE)
   }
@@ -85,8 +85,8 @@ read_fgd <- function(file) { # nolint
           sf::st_sfc(crs = 6668) %>%
           sf::st_sf(
             gml_id = ..2,
-            comm_name = ..3,
-            comm_type = ..4,
+            name = ..3,
+            type = ..4,
             geometry = .,
             stringsAsFactors = FALSE)) %>%
       purrr::reduce(rbind)
@@ -283,23 +283,27 @@ read_fgd <- function(file) { # nolint
     }
   }
 
+  elem_vis <-
+    file_info$xml_docs %>%
+    xml2::xml_find_all("/*/*/*[5]") %>%
+    xml2::xml_text()
+
   res <-
-    res %>%
-    purrr::list_modify(
+    res %>% purrr::list_modify(
       life_span_from = file_info$xml_docs %>%
-        xml2::xml_find_all("/*/*/*[2]/*['timePosition']") %>% # nolint
+        xml2::xml_find_all("/*/*/*[2]/*['timePosition']") %>%
         xml2::xml_text() %>%
         readr::parse_date(),
-      development_date =
-        file_info$xml_docs %>%
-        xml2::xml_find_all("/*/*/*[3]/*['timePosition']") %>% # nolint
+      development_date = file_info$xml_docs %>%
+        xml2::xml_find_all("/*/*/*[3]/*['timePosition']") %>%
         xml2::xml_text() %>%
         readr::parse_date(),
-      org_gi_level =
-        extract_xml_value(file_info$xml_docs, name = "orgGILvl"),
-      visibility =
-        extract_xml_value(file_info$xml_docs, name = "vis")
-    ) %>%
+      org_gi_level = extract_xml_value(file_info$xml_docs, name = "orgGILvl"),
+      visibility = ifelse(
+        elem_vis %in% c(intToUtf8(c(34920, 31034)),
+                        intToUtf8(c(38750, 34920, 31034))),
+        elem_vis,
+        NA_character_)) %>%
     tibble::new_tibble(subclass = "sf", nrow = nrow(res))
   res[, names(res)[!names(res) %in% attr(res, "sf_column")]]
 }
