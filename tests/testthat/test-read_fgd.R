@@ -4,6 +4,8 @@ test_that("Successd on dummies", {
   res <-
     read_fgd(file = "FG-GML-000000-AdmPt-dummy.xml")
   expect_s3_class(res, "sf")
-  expect_equal(dim(res), c(1, 3))
-  expect_named(res, c("gml_id", "adm_name", "geometry"))
+  expect_equal(dim(res), c(1, 9))
+  expect_named(res, c("gml_id", "type", "name", "adm_code",
+                      "life_span_from", "development_date",
+                      "org_gi_level", "visibility", "geometry"))
 })
