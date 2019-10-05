@@ -1,19 +1,24 @@
-#' @title Read and Parse FGD's XML dem file
+#' @title Read and Parse Fundamental Geospatial Data (FGD) dem file
 #'
-#' @description Supporting FGD Version 4.1 (2016/10/31)
+#' @description The JPGIS (GML) format file provided by FGD as input,
+#' the digital elevation models in the file are read as a data.frame or spatial object (raster or stars).
+#' Supporting FGD Version 4.1 (2016/10/31)
+#' @seealso \url{https://fgd.gsi.go.jp/download/ref_dem.html}
 #'
 #' @inheritParams read_fgd
 #' @param resolution the number of dem mesh size resolution: 5m or 10m
-#' @param return_class one of return object class: 'df' (data.frame), 'raster'
+#' @param return_class one of return object class: 'df' (data.frame, default), 'raster' or 'stars'
 #' @import xml2
 #' @importFrom magrittr use_series
 #' @importFrom purrr reduce
 #' @importFrom raster raster
-#' @importFrom rlang arg_match
+#' @importFrom rlang arg_match warn
 #' @importFrom tibble add_row
 #' @importFrom readr read_csv
+#' @importFrom stars st_as_stars
 #' @export
-read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "raster")) {
+read_fgd_dem <- function(file, resolution = c(5, 10),
+                         return_class = c("df", "raster", "stars")) {
   . <- value <- NULL
   output_type <-
     rlang::arg_match(return_class)
@@ -60,13 +65,23 @@ read_fgd_dem <- function(file, resolution = c(5, 10), return_class = c("df", "ra
   res <-
     df_dem_full %>%
     tibble::as_tibble()
-  switch(output_type,
-         df = res,
-         raster = res %>%
+  if (output_type == "stars") {
+
+  }
+  if (output_type == "df") {
+    res
+  } else if (output_type %in% c("raster", "stars")) {
+    res <-
+      res %>%
       magrittr::use_series(value) %>%
       matrix(nrow = grid_size$x, ncol = grid_size$y) %>%
       t() %>%
       raster::raster() %>%
-        set_coords(meshcode = file_info$meshcode)
-  )
+      set_coords(meshcode = file_info$meshcode)
+    if (output_type == "raster") {
+      res
+    } else if (output_type == "stars") {
+      stars::st_as_stars(res)
+    }
+  }
 }

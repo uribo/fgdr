@@ -1,11 +1,20 @@
-#' @title Read and Parse FGD's XML file
+#' @title Read and Parse Fundamental Geospatial Data (FGD) file
 #'
-#' @description Supporting FGD Version 4.1 (2016/10/31)
-#'
+#' @description The JPGIS (GML) format file provided by FGD as input,
+#' the fundamental items in the file is read as an 'sf' object.
+#' Supporting FGD Version 4.1 (2016/10/31).
+#' @details Support following items:
+#' Administrative Area ('AdmArea'), Administrative Boundary ('AdmBdry'),
+#' Representative point of Administrative Area ('AdmPt'), Building Area ('BldA'), Building Outline ('BldL'), Contour ('Cntr'),
+#' Community Boundary ('CommBdry'), Representative Point of Community Area ('CommPt'), Coastline ('Cstline')
+#' Elevation Point ('ElevPt'), Geodetic Control Point ('GCP'), Railroad Track Centerline ('RailCL'), Road Component ('RdCompt'),
+#' Road Edge ('RdEdg'), Water Area ('WA'), Water Line ('WL') and Waterside Structure Line ('WStrL').
+#' @seealso \url{https://fgd.gsi.go.jp/download/ref_kihon.html}
 #' @param file Path to XML file
 #' @import sf
 #' @import xml2
-#' @importFrom purrr pmap
+#' @importFrom purrr pmap reduce list_modify
+#' @importFrom tibble new_tibble
 #' @export
 read_fgd <- function(file) { # nolint
   file_info <-
@@ -135,12 +144,10 @@ read_fgd <- function(file) { # nolint
 
     xml_parsed <-
       fgd_line_parse(file)
-
     bld_type <-
       extract_xml_value(file_info$xml_docs, name = "type", name_length = 6)
 
     if (file_info$type == "BldA") {
-
       res <-
         sf::st_sf(
           gml_id = ids,
@@ -150,7 +157,6 @@ read_fgd <- function(file) { # nolint
           ) %>%
         sf::st_polygonize() %>%
         extract_polygon()
-
     }
 
     if (file_info$type == "BldL") {
@@ -164,7 +170,6 @@ read_fgd <- function(file) { # nolint
   }
 
   if (file_info$type %in% c("GCP")) {
-
     res <-
       list(xml_parsed = fgd_point_parse(file),
            ids,
@@ -209,7 +214,6 @@ read_fgd <- function(file) { # nolint
   }
 
   if (file_info$type %in% c("RdCompt", "RdEdg")) {
-
     res <-
       sf::st_sf(
         gml_id = ids,
@@ -220,23 +224,19 @@ read_fgd <- function(file) { # nolint
   }
 
   if (file_info$type %in% c("WA", "WL")) {
-
     xml_parsed <-
       fgd_line_parse(file)
     type <-
       extract_xml_value(file_info$xml_docs, name = "type", name_length = 6)
 
     if (file_info$type %in% c("WL")) {
-
       res <-
         sf::st_sf(
           gml_id = ids,
           type = type,
           geometry = xml_parsed,
           stringsAsFactors = FALSE)
-
     } else if (file_info$type %in% c("WA")) {
-
       res <-
         sf::st_sf(
           gml_id = ids,

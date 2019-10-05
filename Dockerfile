@@ -23,6 +23,7 @@ RUN set -x && \
     reprex \
     roxygen2 \
     sf \
+    stars \
     usethis \
     zeallot && \
   installGithub.r \

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_fdg.R
 \name{read_fgd}
 \alias{read_fgd}
-\title{Read and Parse FGD's XML file}
+\title{Read and Parse Fundamental Geospatial Data (FGD) file}
 \usage{
 read_fgd(file)
 }
@@ -10,5 +10,18 @@ read_fgd(file)
 \item{file}{Path to XML file}
 }
 \description{
-Supporting FGD Version 4.1 (2016/10/31)
+The JPGIS (GML) format file provided by FGD as input,
+the fundamental items in the file is read as an 'sf' object.
+Supporting FGD Version 4.1 (2016/10/31).
+}
+\details{
+Support following items:
+Administrative Area ('AdmArea'), Administrative Boundary ('AdmBdry'),
+Representative point of Administrative Area ('AdmPt'), Building Area ('BldA'), Building Outline ('BldL'), Contour ('Cntr'),
+Community Boundary ('CommBdry'), Representative Point of Community Area ('CommPt'), Coastline ('Cstline')
+Elevation Point ('ElevPt'), Geodetic Control Point ('GCP'), Railroad Track Centerline ('RailCL'), Road Component ('RdCompt'),
+Road Edge ('RdEdg'), Water Area ('WA'), Water Line ('WL') and Waterside Structure Line ('WStrL').
+}
+\seealso{
+\url{https://fgd.gsi.go.jp/download/ref_kihon.html}
 }
