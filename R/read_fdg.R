@@ -86,11 +86,9 @@ read_fgd <- function(file) {
           )
       ) %>%
       purrr::reduce(rbind)
-
   }
 
   if (file_info$type == "Cstline") {
-
     res <-
       sf::st_sf(
         gml_id = ids,
@@ -98,32 +96,34 @@ read_fgd <- function(file) {
         geometry = fgd_line_parse(file),
         stringsAsFactors = FALSE
         )
-
   }
 
   if (file_info$type %in% c("AdmBdry")) {
-
     res <-
       sf::st_sf(
         gml_id = ids,
-        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        type = extract_xml_value(file_info$xml_docs,
+                                 name = "type",
+                                 name_length = 7),
         geometry = fgd_line_parse(file),
-        stringsAsFactors = FALSE
-        )
-
+        stringsAsFactors = FALSE)
   }
 
   if (file_info$type %in% c("AdmArea", "AdmPt")) {
-
     nms <-
       extract_xml_value(file_info$xml_docs, name = "name", name_length = 9)
-
+    type <-
+      extract_xml_value(file_info$xml_docs, name = "type", name_length = 9)
+    adm_code <-
+      sprintf("%05d",
+              extract_xml_value(file_info$xml_docs, name = "admCode", name_length = 9))
     if (file_info$type %in% c("AdmArea")) {
-
       res <-
         sf::st_sf(
           gml_id = ids,
-          adm_name = nms,
+          type = type,
+          name = nms,
+          adm_code = adm_code,
           geometry = fgd_line_parse(file),
           stringsAsFactors = FALSE
           ) %>%
@@ -133,11 +133,12 @@ read_fgd <- function(file) {
     }
 
     if (file_info$type %in% c("AdmPt")) {
-
       res <-
         sf::st_sf(
           gml_id = ids,
-          adm_name = nms,
+          type = type,
+          name = nms,
+          adm_code = adm_code,
           geometry =
             fgd_point_parse(file) %>%
             purrr::map(st_point) %>%
@@ -161,7 +162,7 @@ read_fgd <- function(file) {
       res <-
         sf::st_sf(
           gml_id = ids,
-          bld_type = bld_type,
+          type = bld_type,
           geometry = xml_parsed,
           stringsAsFactors = FALSE
           ) %>%
@@ -175,7 +176,7 @@ read_fgd <- function(file) {
       res <-
         sf::st_sf(
           gml_id = ids,
-          bld_type = bld_type,
+          type = bld_type,
           geometry = xml_parsed,
           stringsAsFactors = FALSE
           )
@@ -225,10 +226,9 @@ read_fgd <- function(file) {
     res <-
       sf::st_sf(
         gml_id = ids,
-        bld_type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
+        type = extract_xml_value(file_info$xml_docs, name = "type", name_length = 7),
         geometry = fgd_line_parse(file),
-        stringsAsFactors = FALSE
-        )
+        stringsAsFactors = FALSE)
 
   }
 
