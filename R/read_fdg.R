@@ -35,7 +35,7 @@ read_fgd <- function(file) { # nolint
         ~ sf::st_point(matrix(unlist(..1),
                               ncol = 2,
                               byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
+          sf::st_sfc(crs = 6668) %>%
           sf::st_sf(
             gml_id = ..2,
             type = ..3,
@@ -63,7 +63,7 @@ read_fgd <- function(file) { # nolint
         ~ sf::st_point(matrix(unlist(..1),
                               ncol = 2,
                               byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
+          sf::st_sfc(crs = 6668) %>%
           sf::st_sf(
             gml_id = ..2,
             comm_name = ..3,
@@ -125,7 +125,7 @@ read_fgd <- function(file) { # nolint
           geometry =
             fgd_point_parse(file) %>%
             purrr::map(st_point) %>%
-            sf::st_sfc(crs = 4326),
+            sf::st_sfc(crs = 6668),
           stringsAsFactors = FALSE)
 
     }
@@ -181,7 +181,7 @@ read_fgd <- function(file) { # nolint
         ~ sf::st_point(matrix(unlist(..1),
                               ncol = 2,
                               byrow = TRUE)) %>%
-          sf::st_sfc(crs = 4326) %>%
+          sf::st_sfc(crs = 6668) %>%
           sf::st_sf(
             gml_id = ..2,
             org_name = ..3,

@@ -72,7 +72,7 @@ elem_to_line <- function(xml_parsed) {
       ~ sf::st_linestring(matrix(unlist(.x),
                                  ncol = 2,
                                  byrow = TRUE))) %>%
-    sf::st_sfc(crs = 4326)
+    sf::st_sfc(crs = 6668)
 
 }
 

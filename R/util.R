@@ -32,7 +32,8 @@ dem_check <- function(file, .verbose = TRUE, ...) {
 set_coords <- function(raster, meshcode) {
   mesh <-
     meshcode %>%
-    jpmesh::export_mesh()
+    jpmesh::export_mesh() %>%
+    sf::st_transform(crs = 6668)
   bb <-
     mesh %>%
     sf::st_bbox() %>%
@@ -59,7 +60,7 @@ set_coords <- function(raster, meshcode) {
         matrix(., ncol = 2, byrow = TRUE)) %>%
     purrr::map(
       ~ sf::st_linestring(.x)) %>%
-    sf::st_sfc(crs = 4326)
+    sf::st_sfc(crs = 6668)
 }
 
 extract_polygon <- function(d) {
