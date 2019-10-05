@@ -17,10 +17,21 @@ Supporting FGD Version 4.1 (2016/10/31).
 \details{
 Support following items:
 Administrative Area ('AdmArea'), Administrative Boundary ('AdmBdry'),
-Representative point of Administrative Area ('AdmPt'), Building Area ('BldA'), Building Outline ('BldL'), Contour ('Cntr'),
-Community Boundary ('CommBdry'), Representative Point of Community Area ('CommPt'), Coastline ('Cstline')
-Elevation Point ('ElevPt'), Geodetic Control Point ('GCP'), Railroad Track Centerline ('RailCL'), Road Component ('RdCompt'),
-Road Edge ('RdEdg'), Water Area ('WA'), Water Line ('WL') and Waterside Structure Line ('WStrL').
+Representative point of Administrative Area ('AdmPt'), Building Area ('BldA'),
+Building Outline ('BldL'), Contour ('Cntr'), Community Boundary ('CommBdry'),
+Representative Point of Community Area ('CommPt'), Coastline ('Cstline'),
+Elevation Point ('ElevPt'), Geodetic Control Point ('GCP'),
+Railroad Track Centerline ('RailCL'), Road Component ('RdCompt'),
+Road Edge ('RdEdg'), Water Area ('WA'), Water Line ('WL') and
+Waterside Structure Line ('WStrL').
+}
+\examples{
+\dontrun{
+# Administrative Area
+read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
+# Water Line
+read_fgd("FG-GML-523346-WL-20180701-0001.xml")
+}
 }
 \seealso{
 \url{https://fgd.gsi.go.jp/download/ref_kihon.html}
