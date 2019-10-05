@@ -1,7 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fgdr
+# fgdr <img src="man/figures/logo.png" align="right" width="120px" />
+
+(Sorry, English version of README is not availavle for
+now.)
+
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr)
+[![minimal R
+version](https://img.shields.io/badge/R%3E%3D-3.1.0-blue.svg)](https://cran.r-project.org/)
 
 [![Travis build
 status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr)
@@ -14,7 +23,13 @@ coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https
 
 ## Installation
 
-パッケージのインストールは、GitHub (このリポジトリ) から行います。
+パッケージのインストールは、CRANから行います。
+
+``` r
+install.packages("fgdr")
+```
+
+開発版を利用する場合はGitHub経由でインストールします。
 
 ``` r
 install.packages("remotes")
@@ -25,7 +40,7 @@ remotes::install_github("uribo/fgdr")
 
 fgdrパッケージを使った、基盤地図情報データの読み込み方法を紹介します。
 
-なお、fgdrパッケージでは、基盤地図情報のデータをダウンロードする関数は用意していません。読み込むデータは各自でダウンロードしてください。また、読み込んだデータの扱いについても基盤地図情報ダウンロードサービスの利用規約に従ってください。
+なお、fgdrパッケージでは、基盤地図情報のデータをダウンロードする関数は用意していません。読み込むデータは各自でダウンロードしてください。また、読み込んだデータの扱いについても[基盤地図情報ダウンロードサービスの利用規約](https://fgd.gsi.go.jp/download/terms.html)に従ってください。
 
 このパッケージには、基盤地図情報データダウロードサービスが提供している
 
@@ -34,14 +49,14 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
 10mメッシュ)
 
 について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster)
-([stars](https://github.com/r-spatial/stars)については準備中)として返却する関数が備わっています。
+([stars](https://github.com/r-spatial/stars))として返却する関数が備わっています。
 
 ``` r
 library(fgdr)
 library(raster)
 #> Loading required package: sp
 library(sf)
-#> Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0
+#> Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 6.2.0
 ```
 
 ## 基本項目
@@ -53,17 +68,20 @@ library(sf)
 read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
 ```
 
-    #> Simple feature collection with 4 features and 2 fields
+    #> Simple feature collection with 4 features and 8 fields
     #> geometry type:  POINT
     #> dimension:      XY
-    #> bbox:           xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013
-    #> epsg (SRID):    4326
-    #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
-    #>              gml_id adm_name                  geometry
-    #> 1 K6_4816212612_1-2   真庭市  POINT (133.7835 35.0416)
-    #> 2 K6_4818012606_1-2   美咲町 POINT (133.8394 35.02376)
-    #> 3 K6_4818312621_1-2   津山市 POINT (133.8496 35.06013)
-    #> 4 K6_4819212600_1-2   津山市 POINT (133.8736 35.00697)
+    #> bbox:           xmin: 133.783470941 ymin: 35.006967583 xmax: 133.873561494 ymax: 35.06012957
+    #> epsg (SRID):    6668
+    #> proj4string:    +proj=longlat +ellps=GRS80 +no_defs
+    #> # A tibble: 4 x 9
+    #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
+    #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
+    #> 1 K6_48… 郡市・東… 真庭市… 33214    2015-05-25     2018-07-03              25000
+    #> 2 K6_48… 町村・指… 美咲町… 33666    2015-05-25     2018-07-03              25000
+    #> 3 K6_48… 郡市・東… 津山市… 33203    2015-05-25     2018-07-03              25000
+    #> 4 K6_48… 郡市・東… 津山市… 33203    2015-05-25     2018-07-03              25000
+    #> # … with 2 more variables: visibility <chr>, geometry <POINT [°]>
 
 水域 (WL) はライン、行政区画 (AdmArea) はポリゴンデータになります。
 
@@ -71,17 +89,20 @@ read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
 read_fgd("FG-GML-523346-AdmArea-20180701-0001.xml")
 ```
 
-    #> Simple feature collection with 4 features and 2 fields
+    #> Simple feature collection with 4 features and 8 fields
     #> geometry type:  POLYGON
     #> dimension:      XY
-    #> bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333
-    #> epsg (SRID):    4326
-    #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
-    #>          gml_id adm_name                       geometry
-    #> 1 K4_523346_1-2   美咲町 POLYGON ((133.7869 35, 133....
-    #> 2 K4_523346_2-2   真庭市 POLYGON ((133.7879 35.00639...
-    #> 3 K4_523346_3-2   津山市 POLYGON ((133.8742 35.00319...
-    #> 4 K4_523346_4-2   津山市 POLYGON ((133.8746 35.03678...
+    #> bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.083333333
+    #> epsg (SRID):    6668
+    #> proj4string:    +proj=longlat +ellps=GRS80 +no_defs
+    #> # A tibble: 4 x 9
+    #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
+    #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
+    #> 1 K4_52… 町村・指… 美咲町… 33666    2018-07-02     2018-07-03              25000
+    #> 2 K4_52… 郡市・東… 真庭市… 33214    2018-07-02     2018-07-03              25000
+    #> 3 K4_52… 郡市・東… 津山市… 33203    2018-07-02     2018-07-03              25000
+    #> 4 K4_52… 郡市・東… 津山市… 33203    2018-07-02     2018-07-03              25000
+    #> # … with 2 more variables: visibility <chr>, geometry <POLYGON [°]>
 
 ## 数値標高モデル
 
@@ -142,14 +163,14 @@ read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
              return_class = "raster")
 ```
 
-    #> class       : RasterLayer 
-    #> dimensions  : 750, 1125, 843750  (nrow, ncol, ncell)
-    #> resolution  : 0.0001111111, 0.00011112  (x, y)
-    #> extent      : 140, 140.125, 36.08333, 36.16667  (xmin, xmax, ymin, ymax)
-    #> coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-    #> data source : in memory
-    #> names       : layer 
-    #> values      : 5, 316  (min, max)
+    #> class      : RasterLayer 
+    #> dimensions : 750, 1125, 843750  (nrow, ncol, ncell)
+    #> resolution : 0.000111111111111, 0.0001111111112  (x, y)
+    #> extent     : 140, 140.125, 36.0833333333, 36.1666666667  (xmin, xmax, ymin, ymax)
+    #> crs        : +proj=longlat +ellps=GRS80 +no_defs 
+    #> source     : memory
+    #> names      : layer 
+    #> values     : 5, 316  (min, max)
 
 ## ライセンス
 

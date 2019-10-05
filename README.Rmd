@@ -12,7 +12,12 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# fgdr
+# fgdr <img src="man/figures/logo.png" align="right" width="120px" />
+
+(Sorry, English version of README is not availavle for now.)
+
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-blue.svg)](https://cran.r-project.org/)
 
 [![Travis build status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr) [![Codecov test coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://codecov.io/gh/uribo/fgdr?branch=master)
 
@@ -20,7 +25,14 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-パッケージのインストールは、GitHub (このリポジトリ) から行います。
+パッケージのインストールは、CRANから行います。
+
+```{r,eval = FALSE, echo = TRUE}
+install.packages("fgdr")
+```
+
+
+開発版を利用する場合はGitHub経由でインストールします。
 
 ```{r, eval = FALSE, echo = TRUE}
 install.packages("remotes")
@@ -31,14 +43,14 @@ remotes::install_github("uribo/fgdr")
 
 fgdrパッケージを使った、基盤地図情報データの読み込み方法を紹介します。
 
-なお、fgdrパッケージでは、基盤地図情報のデータをダウンロードする関数は用意していません。読み込むデータは各自でダウンロードしてください。また、読み込んだデータの扱いについても基盤地図情報ダウンロードサービスの利用規約に従ってください。
+なお、fgdrパッケージでは、基盤地図情報のデータをダウンロードする関数は用意していません。読み込むデータは各自でダウンロードしてください。また、読み込んだデータの扱いについても[基盤地図情報ダウンロードサービスの利用規約](https://fgd.gsi.go.jp/download/terms.html)に従ってください。
 
 このパッケージには、基盤地図情報データダウロードサービスが提供している
 
 - 基本項目
 - 数値標高モデル (5m, 10mメッシュ)
 
-について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster) ([stars](https://github.com/r-spatial/stars)については準備中)として返却する関数が備わっています。
+について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster) ([stars](https://github.com/r-spatial/stars))として返却する関数が備わっています。
 
 ```{r}
 library(fgdr)

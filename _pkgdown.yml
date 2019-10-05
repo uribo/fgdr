@@ -1,0 +1,31 @@
+url: https://uribo.github.io/fgdr
+
+authors:
+  Shinya Uryu:
+    href: https://suryu.me
+
+templates:
+  params:
+    bootswatch: paper
+
+navbar:
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: News
+    href: news/index.html
+
+reference:
+  - title: "Read and Parse Fundamental Geospatial Data"
+    contents:
+    - read_fgd
+  - title: "Read and Parse Fundamental Geospatial Data dem"
+    contents:
+    - read_fgd_dem
+  - title: "Utilities"
+    contents:
+    - dem_check
+    - fgd_line_parse
