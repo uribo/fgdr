@@ -308,6 +308,23 @@ read_fgd <- function(file) {
     }
   }
 
-  res %>%
+  res <-
+    res %>%
+    purrr::list_modify(
+      life_span_from = file_info$xml_docs %>%
+        xml2::xml_find_all("/*/*/*[2]/*['timePosition']") %>% # nolint
+        xml2::xml_text() %>%
+        readr::parse_date(),
+      development_date =
+        file_info$xml_docs %>%
+        xml2::xml_find_all("/*/*/*[3]/*['timePosition']") %>% # nolint
+        xml2::xml_text() %>%
+        readr::parse_date(),
+      org_gi_level =
+        extract_xml_value(file_info$xml_docs, name = "orgGILvl"),
+      visibility =
+        extract_xml_value(file_info$xml_docs, name = "vis")
+    ) %>%
     tibble::new_tibble(subclass = "sf", nrow = nrow(res))
+  res[, names(res)[!names(res) %in% attr(res, "sf_column")]]
 }
