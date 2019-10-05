@@ -6,10 +6,6 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
   - R -q -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
   - R -q -e 'if (getRversion() < "3.2" && !requireNamespace("curl")) install.packages("curl")'
-  - R -q -e 'install.packages(c("lintr"))'
-after_success:
-  - R CMD INSTALL $PKG_TARBALL
-  - R -q -e 'covr::codecov(); lintr::lint_package()'
 
 # Header
 language: r
@@ -26,6 +22,17 @@ env:
 matrix:
   include:
   - r: release
+  after_success:
+      - Rscript -e 'covr::codecov()'
+      - find . -name testthat.Rout | xargs cat
+      after_failure:
+      - find . -name testthat.Rout | xargs cat
+      before_cache:
+      - Rscript -e 'remotes::install_cran("pkgdown")'
+      deploy:
+        provider: script
+        script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+        skip_cleanup: true
   - r: oldrel
   - r: devel
 
