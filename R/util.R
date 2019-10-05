@@ -5,10 +5,8 @@
 #' @param ... Additional arguments passed on to other functions.
 #' @import xml2
 dem_check <- function(file, .verbose = TRUE, ...) {
-
   file_info <-
     fgd_file_info(file, ...)
-
   if (file_info$type != "DEM") {
     rlang::inform("Input files must be DEM format")
   } else {
@@ -16,17 +14,14 @@ dem_check <- function(file, .verbose = TRUE, ...) {
       file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:sequenceRule") %>% # nolint
       xml2::xml_attr(attr = "order")
-
     if (value_order != "+x-y")
       rlang::inform("check input file format")
-
     start_point <-
       file_info$xml_docs %>%
       xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:startPoint") %>% # nolint
       xml2::xml_text() %>%
       stringr::str_split("[[:space:]]") %>%
       unlist()
-
     if (.verbose == TRUE)
       if (!all.equal(start_point, c("0", "0")))
         rlang::inform("Data is not given from the starting point.\nCheck these coordinate")
@@ -34,17 +29,14 @@ dem_check <- function(file, .verbose = TRUE, ...) {
   }
 }
 
-set_coords <- function(raster, meshcode){
-
+set_coords <- function(raster, meshcode) {
   mesh <-
     meshcode %>%
     jpmesh::export_mesh()
-
   bb <-
     mesh %>%
     sf::st_bbox() %>%
     as.numeric()
-
   raster::extent(raster) <-
     raster::extent(bb[1], bb[3], bb[2], bb[4])
   raster::crs(raster) <-
@@ -71,66 +63,51 @@ set_coords <- function(raster, meshcode){
 }
 
 extract_polygon <- function(d) {
-
   rowname <- NULL
-
   na_rows <-
     which(st_is_empty(d$geometry) == TRUE)
 
   if (length(na_rows) > 0) {
     d_empty <-
       d[na_rows, ]
-
     d_fill <-
       d[-na_rows, ] %>%
       sf::st_collection_extract("POLYGON")
-
     res <-
       rbind(d_empty, d_fill) %>%
       tibble::rownames_to_column()
-
     res$rowname <- as.numeric(res$rowname)
-
     res <-
       res[with(res, order(rowname)), ]
-
     res <-
       base::subset(res, select = -rowname)
   } else {
-
     res <-
       d %>%
       sf::st_collection_extract("POLYGON") %>%
       tibble::remove_rownames()
   }
-
   res
 }
 
 extract_xml_value <- function(x, name, name_length = 8) {
-
   . <- NULL
-
   x1 <-
     x %>%
     xml2::xml_find_all("/*/*") %>% # nolint
     purrr::set_names(seq(from = 1, to = length(.)))
-
   contents <-
     x %>%
     xml2::xml_find_all("/*/*/*") # nolint
-
   contents_name <-
     contents %>%
     xml2::xml_name()
-
   x_loc <-
     which(contents_name %in% name)
   x_vec <-
     contents[x_loc] %>%
     xml2::xml_contents() %>%
     as.character()
-
   if (length(x1) - 2 != length(x_vec)) {
     x2 <-
       seq(from = 3, to = length(x1)) %>%
@@ -138,13 +115,11 @@ extract_xml_value <- function(x, name, name_length = 8) {
         ~ x1[[.x]] %>%
           xml2::xml_length() == name_length) %>%
       purrr::set_names(seq(from = 3, to = length(x1)))
-
     na_loc <-
       x2 %>%
       purrr::keep(~ .x == FALSE) %>%
       names() %>%
       as.numeric()
-
     x_vec <-
       seq(1, length(x_vec)) %>%
       purrr::map(
@@ -155,14 +130,10 @@ extract_xml_value <- function(x, name, name_length = 8) {
           } else {
             res <- x_vec[x]
           }
-
           res
         }
       ) %>%
       purrr::reduce(c)
-
   }
-
   utils::type.convert(x_vec, as.is = TRUE)
-
 }
