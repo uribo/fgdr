@@ -4,11 +4,10 @@ Version: 1.0.0
 Authors@R: c(
     person(given = "Shinya", family = "Uryu", email = "suika1127@gmail.com", role  = c("aut", "cre"), comment = c(ORCID = "0000-0002-0493-6186"))
     )
-Description: Read and Parse for Fundamental Geo-Spatial Data ('FGD')'s XML file which downloads 
+Description: Read and Parse for Fundamental Geo-Spatial Data ('FGD') which downloads XML file 
     from providing site (<https://fgd.gsi.go.jp/download/menu.php>). The 'JPGIS' ('GML') format file 
     provided by 'FGD' so that it can be handled as an R spatial object such as 'sf' and 'raster' or 'stars'.
-    Supports the current latest version ('FGD' Version 4.1 (2016/10/31)), and accepts 
-    fundamental items and digital elevation models.
+    Supports the 'FGD' version 4.1, and accepts fundamental items and digital elevation models.
 License: MIT + file LICENSE
 Imports: 
     jpmesh (>= 1.1.1),

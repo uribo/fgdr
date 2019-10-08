@@ -5,6 +5,9 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
-* This is a new release.
+* This is a new release and resubmit.
+* Fix single quotes place.
+* Add smale test file in inst/ subfolder and referd by use system.file().
+* Add return value to document.

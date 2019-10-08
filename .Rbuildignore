@@ -14,3 +14,4 @@
 ^logo\.png$
 ^_pkgdown\.yml$
 ^pkgdown$
+^CRAN-RELEASE$
