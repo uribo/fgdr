@@ -18,18 +18,18 @@
 #' @importFrom stars st_as_stars
 #' @export
 #' @examples
-#' \dontrun{
-#' read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
+#' fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
+#' read_fgd_dem(fgd_5dem,
 #'              resolution = 5)
 #' # return as raster
-#' read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
+#' read_fgd_dem(fgd_5dem,
 #'              resolution = 5,
 #'              return_class = "raster")
 #' # return as stars
-#' read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
+#' fgd_10dem <- system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml", package = "fgdr")
+#' read_fgd_dem(fgd_10dem,
 #'              resolution = 10,
 #'              return_class = "stars")
-#' }
 read_fgd_dem <- function(file, resolution = c(5, 10),
                          return_class = c("df", "raster", "stars")) {
   . <- value <- NULL

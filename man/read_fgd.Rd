@@ -26,12 +26,8 @@ Road Edge ('RdEdg'), Water Area ('WA'), Water Line ('WL') and
 Waterside Structure Line ('WStrL').
 }
 \examples{
-\dontrun{
 # Administrative Area
-read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
-# Water Line
-read_fgd("FG-GML-523346-WL-20180701-0001.xml")
-}
+read_fgd(system.file("extdata/FG-GML-000000-AdmPt-dummy.xml", package = "fgdr"))
 }
 \seealso{
 \url{https://fgd.gsi.go.jp/download/ref_kihon.html}

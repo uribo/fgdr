@@ -20,12 +20,8 @@
 #' @importFrom tibble new_tibble
 #' @export
 #' @examples
-#' \dontrun{
 #' # Administrative Area
-#' read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
-#' # Water Line
-#' read_fgd("FG-GML-523346-WL-20180701-0001.xml")
-#' }
+#' read_fgd(system.file("extdata/FG-GML-000000-AdmPt-dummy.xml", package = "fgdr"))
 read_fgd <- function(file) { # nolint
   file_info <-
     fgd_file_info(file)
