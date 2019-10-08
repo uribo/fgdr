@@ -27,6 +27,5 @@ RUN set -x && \
     usethis \
     zeallot && \
   installGithub.r \
-    "dantonnoriega/xmltools" \
-    "klutometis/roxygen" && \
+    "dantonnoriega/xmltools" && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds

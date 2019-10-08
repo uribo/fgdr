@@ -28,9 +28,10 @@ LazyData: true
 URL: https://github.com/uribo/fgdr
 BugReports: https://github.com/uribo/fgdr/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.99.9001
-Suggests: 
-    testthat,
-    covr
+RoxygenNote: 6.1.1
+Suggests:
+    covr,
+    roxygen2 (>= 6.1.1),
+    testthat
 Depends: 
     R (>= 3.1)

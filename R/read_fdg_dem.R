@@ -7,7 +7,8 @@
 #'
 #' @inheritParams read_fgd
 #' @param resolution the number of dem mesh size resolution: 5m or 10m
-#' @param return_class one of return object class: 'df' (data.frame, default), 'raster' or 'stars'
+#' @param return_class one of return object class: 'df' ([data.frame][data.frame], default),
+#' '[raster][raster::raster]' or '[stars][stars::st_as_stars]'
 #' @import xml2
 #' @importFrom magrittr use_series
 #' @importFrom purrr reduce
@@ -16,6 +17,7 @@
 #' @importFrom tibble add_row
 #' @importFrom readr read_csv
 #' @importFrom stars st_as_stars
+#' @return A [tibble][tibble::tibble] (data.frame), [raster][raster::raster] or [stars][stars::st_as_stars]
 #' @export
 #' @examples
 #' fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")

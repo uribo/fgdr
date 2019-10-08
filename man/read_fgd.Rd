@@ -9,6 +9,9 @@ read_fgd(file)
 \arguments{
 \item{file}{Path to XML file}
 }
+\value{
+A \link[sf:st_sf]{sf}
+}
 \description{
 The JPGIS (GML) format file provided by FGD as input,
 the fundamental items in the file is read as an 'sf' object.

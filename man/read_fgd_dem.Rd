@@ -4,18 +4,19 @@
 \alias{read_fgd_dem}
 \title{Read and Parse Fundamental Geospatial Data (FGD) dem file}
 \usage{
-read_fgd_dem(
-  file,
-  resolution = c(5, 10),
-  return_class = c("df", "raster", "stars")
-)
+read_fgd_dem(file, resolution = c(5, 10), return_class = c("df",
+  "raster", "stars"))
 }
 \arguments{
 \item{file}{Path to XML file}
 
 \item{resolution}{the number of dem mesh size resolution: 5m or 10m}
 
-\item{return_class}{one of return object class: 'df' (data.frame, default), 'raster' or 'stars'}
+\item{return_class}{one of return object class: 'df' (\link{data.frame}, default),
+'\link[raster:raster]{raster}' or '\link[stars:st_as_stars]{stars}'}
+}
+\value{
+A \link[tibble:tibble]{tibble} (data.frame), \link[raster:raster]{raster} or \link[stars:st_as_stars]{stars}
 }
 \description{
 The JPGIS (GML) format file provided by FGD as input,

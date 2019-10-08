@@ -18,6 +18,7 @@
 #' @import xml2
 #' @importFrom purrr pmap reduce list_modify
 #' @importFrom tibble new_tibble
+#' @return A [sf][sf::st_sf]
 #' @export
 #' @examples
 #' # Administrative Area
