@@ -9,5 +9,3 @@
 
 * This is a new release and resubmit.
 * Fix single quotes place.
-* Add smale test file in inst/ subfolder and referd by use system.file().
-* Add return value to document.
