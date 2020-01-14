@@ -10,8 +10,7 @@
 #' @param return_class one of return object class: 'df' ([data.frame][data.frame], default),
 #' '[raster][raster::raster]' or '[stars][stars::st_as_stars]'
 #' @import xml2
-#' @importFrom magrittr use_series
-#' @importFrom purrr reduce
+#' @importFrom purrr pluck reduce
 #' @importFrom raster raster
 #' @importFrom rlang arg_match warn
 #' @importFrom tibble add_row
@@ -55,6 +54,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
     as.character() %>%
     readr::read_csv(col_names = c("type", "value"),
                     col_types = c("cd"))
+
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
   if (identical(checked, c("0", "0"))) {
     df_dem_full <-
@@ -77,15 +77,12 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
         value = NA_real_
       )
   }
-  res <-
-    df_dem_full %>%
-    tibble::as_tibble()
   if (output_type == "df") {
-    res
+    df_dem_full
   } else if (output_type %in% c("raster", "stars")) {
     res <-
-      res %>%
-      magrittr::use_series(value) %>%
+      df_dem_full %>%
+      purrr::pluck("value") %>%
       matrix(nrow = grid_size$x, ncol = grid_size$y) %>%
       t() %>%
       raster::raster() %>%

@@ -4,8 +4,11 @@
 \alias{read_fgd_dem}
 \title{Read and Parse Fundamental Geospatial Data (FGD) dem file}
 \usage{
-read_fgd_dem(file, resolution = c(5, 10), return_class = c("df",
-  "raster", "stars"))
+read_fgd_dem(
+  file,
+  resolution = c(5, 10),
+  return_class = c("df", "raster", "stars")
+)
 }
 \arguments{
 \item{file}{Path to XML file}
