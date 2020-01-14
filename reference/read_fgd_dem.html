@@ -129,8 +129,11 @@ the digital elevation models in the file are read as a data.frame or spatial obj
 Supporting FGD Version 4.1 (2016/10/31)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_fgd_dem</span>(<span class='no'>file</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>10</span>), <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"df"</span>,
-  <span class='st'>"raster"</span>, <span class='st'>"stars"</span>))</pre>
+    <pre class="usage"><span class='fu'>read_fgd_dem</span>(
+  <span class='no'>file</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>10</span>),
+  <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"df"</span>, <span class='st'>"raster"</span>, <span class='st'>"stars"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,20 +163,20 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>fgd_5dem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/FG-GML-0000-00-00-DEM5A-dummy.xml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fgdr"</span>)
 <span class='fu'>read_fgd_dem</span>(<span class='no'>fgd_5dem</span>,
-             <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; # A tibble: 33,750 x 2
+             <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 33,750 x 2</span><span>
 #&gt;    type       value
-#&gt;    &lt;chr&gt;      &lt;dbl&gt;
-#&gt;  1 その他     -9999
-#&gt;  2 地表面     -9999
-#&gt;  3 海水面     -9999
-#&gt;  4 地表面     -9999
-#&gt;  5 データなし    NA
-#&gt;  6 その他     -9999
-#&gt;  7 内水面     -9999
-#&gt;  8 データなし    NA
-#&gt;  9 内水面     -9999
-#&gt; 10 その他     -9999
-#&gt; # … with 33,740 more rows</div><div class='input'><span class='co'># return as raster</span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> その他     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> 地表面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> 海水面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> 地表面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> データなし    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> その他     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> 内水面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> データなし    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> 内水面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> その他     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
+#&gt; </span><span style='color: #555555;'># … with 33,740 more rows</span><span></div><div class='input'><span class='co'># return as raster</span>
 <span class='fu'>read_fgd_dem</span>(<span class='no'>fgd_5dem</span>,
              <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>,
              <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='st'>"raster"</span>)</div><div class='output co'>#&gt; class      : RasterLayer 
@@ -204,7 +207,7 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
 #&gt; y    1  750 0.0833333 -0.000111111 +proj=longlat +ellps=GRS8...    NA   NULL
 #&gt;      
 #&gt; x [x]
-#&gt; y [y]</div></pre>
+#&gt; y [y]</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -225,7 +228,7 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>
