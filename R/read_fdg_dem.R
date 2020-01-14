@@ -80,9 +80,6 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
   res <-
     df_dem_full %>%
     tibble::as_tibble()
-  if (output_type == "stars") {
-
-  }
   if (output_type == "df") {
     res
   } else if (output_type %in% c("raster", "stars")) {
