@@ -92,12 +92,8 @@ fgd_dem_file_info <- function(file, ...) {
     xml2::xml_find_all("/*/*[3]/*[7]") %>% # nolint
     xml2::xml_contents() %>%
     as.character()
-  line_startdend <-
-    which(grepl("gml:tupleList", readLines(file)))
   list(xml_docs = file_info$xml_docs,
        type = file_info$type,
        is5m = is5m,
-       skip_n = line_startdend[1],
-       limit_n = line_startdend[2] - line_startdend[1] - 1,
        meshcode = meshcode)
 }
