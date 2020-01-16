@@ -4,7 +4,8 @@ RUN set -x && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     libgdal-dev \
-    libudunits2-dev && \
+    libudunits2-dev \
+    zlib1g-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
@@ -15,6 +16,7 @@ RUN set -x && \
 
 RUN set -x && \
   install2.r --error \
+    data.table \
     ensurer \
     jpmesh \
     mapview \

@@ -10,6 +10,7 @@ Description: Read and Parse for Fundamental Geo-Spatial Data (FGD) which downloa
     Supports the FGD version 4.1, and accepts fundamental items and digital elevation models.
 License: MIT + file LICENSE
 Imports: 
+    data.table (>= 1.12.8),
     jpmesh (>= 1.1.1),
     magrittr (>= 1.5),
     purrr (>= 0.2.5),

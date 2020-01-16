@@ -1,5 +1,7 @@
 # fgdr (development version)
 
+* Speed up `read_fgd_dem()` by using data.table for backend.
+
 # fgdr 1.0.0
 
 * `read_fdg()` and `read_fgd_dem()` always return JGD2011 (SRID: 6668).

@@ -47,8 +47,8 @@ test_that("dem validation", {
     fgd_dem_file_info(system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml",
                                   package = "fgdr"))
   expect_is(res, "list")
-  expect_length(res, 4)
-  expect_named(res, c("xml_docs", "type", "is5m", "meshcode"))
+  expect_length(res, 6)
+  expect_named(res, c("xml_docs", "type", "is5m", "skip_n", "limit_n", "meshcode"))
   expect_equal(res$type, "DEM")
   expect_true(res$is5m)
   expect_equal(res$meshcode, "00000000")
@@ -57,8 +57,8 @@ test_that("dem validation", {
     fgd_dem_file_info(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
                                   package = "fgdr"))
   expect_is(res, "list")
-  expect_length(res, 4)
-  expect_named(res, c("xml_docs", "type", "is5m", "meshcode"))
+  expect_length(res, 6)
+  expect_named(res, c("xml_docs", "type", "is5m", "skip_n", "limit_n", "meshcode"))
   expect_equal(res$type, "DEM")
   expect_false(res$is5m)
   expect_equal(res$meshcode, "000000")

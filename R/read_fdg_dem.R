@@ -48,13 +48,11 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
   file_info <-
     fgd_dem_file_info(file, options = xml_opts)
   df_dem <-
-    file_info$xml_docs %>%
-    xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>% # nolint
-    xml2::xml_contents() %>%
-    as.character() %>%
-    readr::read_csv(col_names = c("type", "value"),
-                    col_types = c("cd"))
-
+    data.table::fread(file,
+          skip = file_info$skip_n,
+          nrows = file_info$limit_n,
+          col.names = c("type", "value"),
+          colClasses = c("character", "double"))
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
   if (identical(checked, c("0", "0"))) {
     df_dem_full <-
@@ -78,7 +76,9 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
       )
   }
   if (output_type == "df") {
-    df_dem_full
+    df_dem_full %>%
+      as.data.frame() %>%
+      tibble::as_tibble()
   } else if (output_type %in% c("raster", "stars")) {
     res <-
       df_dem_full %>%
