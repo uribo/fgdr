@@ -29,5 +29,4 @@ test_that("Successed on dummies", {
   expect_equal(dim(res), c(843750, 2))
   expect_named(res, c("type", "value"))
   expect_equal(unique(res$value), c(-9999L, NA_real_))
-
 })

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Dataset xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:default="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema" xsi:schemaLocation="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema FGD_GMLSchema.xsd" gml:id="Dataset1">
+
+<Dataset xsi:schemaLocation="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema FGD_GMLSchema.xsd" 
+	xmlns:gml="http://www.opengis.net/gml/3.2" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns="http://fgd.gsi.go.jp/spec/2008/FGD_GMLSchema" 
+	gml:id="Dataset1">
 	<gml:description>基盤地図情報メタデータ ID=dummy:00-00</gml:description>
 	<gml:name>基盤地図情報ダウンロードデータ（GML版dummy）</gml:name>
 	
