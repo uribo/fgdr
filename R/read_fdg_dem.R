@@ -56,7 +56,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
                     col_types = c("cd"))
 
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
-  if (identical(checked, c("0", "0"))) {
+  if (identical(checked, c(0L, 0L))) {
     df_dem_full <-
       df_dem
   } else {

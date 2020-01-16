@@ -42,7 +42,7 @@ test_that("dem validation", {
     .verbose = TRUE,
     options = "NOBLANKS"
   ),
-  c("0", "0"))
+  c(0L, 0L))
   res <-
     fgd_dem_file_info(system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml",
                                   package = "fgdr"))
