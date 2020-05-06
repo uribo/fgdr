@@ -299,6 +299,6 @@ read_fgd <- function(file) { # nolint
                         intToUtf8(c(38750, 34920, 31034))),
         elem_vis,
         NA_character_)) %>%
-    tibble::new_tibble(subclass = "sf", nrow = nrow(res))
+    tibble::new_tibble(class = "sf", nrow = nrow(res))
   res[, names(res)[!names(res) %in% attr(res, "sf_column")]]
 }
