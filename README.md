@@ -10,7 +10,7 @@ now.)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr)
 [![minimal R
-version](https://img.shields.io/badge/R%3E%3D-3.1.0-blue.svg)](https://cran.r-project.org/)
+version](https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg)](https://cran.r-project.org/)
 
 [![Travis build
 status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr)
@@ -54,9 +54,7 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
 ``` r
 library(fgdr)
 library(raster)
-#> Loading required package: sp
 library(sf)
-#> Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 6.2.0
 ```
 
 ## 基本項目
@@ -71,9 +69,8 @@ read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
     #> Simple feature collection with 4 features and 8 fields
     #> geometry type:  POINT
     #> dimension:      XY
-    #> bbox:           xmin: 133.783470941 ymin: 35.006967583 xmax: 133.873561494 ymax: 35.06012957
-    #> epsg (SRID):    6668
-    #> proj4string:    +proj=longlat +ellps=GRS80 +no_defs
+    #> bbox:           xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013
+    #> CRS:            EPSG:6668
     #> # A tibble: 4 x 9
     #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
     #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
@@ -92,9 +89,8 @@ read_fgd("FG-GML-523346-AdmArea-20180701-0001.xml")
     #> Simple feature collection with 4 features and 8 fields
     #> geometry type:  POLYGON
     #> dimension:      XY
-    #> bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.083333333
-    #> epsg (SRID):    6668
-    #> proj4string:    +proj=longlat +ellps=GRS80 +no_defs
+    #> bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333
+    #> CRS:            EPSG:6668
     #> # A tibble: 4 x 9
     #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
     #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
@@ -165,8 +161,8 @@ read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
 
     #> class      : RasterLayer 
     #> dimensions : 750, 1125, 843750  (nrow, ncol, ncell)
-    #> resolution : 0.000111111111111, 0.0001111111112  (x, y)
-    #> extent     : 140, 140.125, 36.0833333333, 36.1666666667  (xmin, xmax, ymin, ymax)
+    #> resolution : 0.0001111111, 0.00011112  (x, y)
+    #> extent     : 140, 140.125, 36.08333, 36.16667  (xmin, xmax, ymin, ymax)
     #> crs        : +proj=longlat +ellps=GRS80 +no_defs 
     #> source     : memory
     #> names      : layer 
