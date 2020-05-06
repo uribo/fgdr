@@ -27,6 +27,7 @@ RUN set -x && \
     usethis \
     zeallot && \
   installGithub.r \
-    "uribo/jpmesh" \
-    "dantonnoriega/xmltools" && \
+    uribo/jpmesh \
+    r-lib/revdepcheck \
+    dantonnoriega/xmltools && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
