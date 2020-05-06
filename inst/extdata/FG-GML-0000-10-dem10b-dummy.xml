@@ -20,7 +20,7 @@
 		<orgGILvl>0</orgGILvl>
 		<orgMDId>Dummy</orgMDId>
 		<type>10mメッシュ（標高）</type>
-		<mesh>000000</mesh>
+		<mesh>544000</mesh>
 		<coverage gml:id="DEM001-3">
 			<gml:boundedBy>
 				<gml:Envelope srsName="fguuid:jgd2000.bl">
