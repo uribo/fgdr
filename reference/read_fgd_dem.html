@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -47,7 +51,6 @@
 the digital elevation models in the file are read as a data.frame or spatial object (raster or stars).
 Supporting FGD Version 4.1 (2016/10/31)" />
 <meta property="og:image" content="https://uribo.github.io/fgdr/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@ Supporting FGD Version 4.1 (2016/10/31)" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +82,7 @@ Supporting FGD Version 4.1 (2016/10/31)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
       </span>
     </div>
 
@@ -100,7 +103,7 @@ Supporting FGD Version 4.1 (2016/10/31)" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/uribo/fgdr">
+  <a href="https://github.com/uribo/fgdr/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -129,11 +132,7 @@ the digital elevation models in the file are read as a data.frame or spatial obj
 Supporting FGD Version 4.1 (2016/10/31)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_fgd_dem</span>(
-  <span class='no'>file</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>10</span>),
-  <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"df"</span>, <span class='st'>"raster"</span>, <span class='st'>"stars"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>read_fgd_dem</span>(<span class='no'>file</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>10</span>), <span class='no'>return_class</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,26 +162,27 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>fgd_5dem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/FG-GML-0000-00-00-DEM5A-dummy.xml"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fgdr"</span>)
 <span class='fu'>read_fgd_dem</span>(<span class='no'>fgd_5dem</span>,
-             <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 33,750 x 2</span><span>
+             <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+             <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='st'>"df"</span>)</div><div class='output co'>#&gt; # A tibble: 33,750 x 2
 #&gt;    type       value
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> その他     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> 地表面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> 海水面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> 地表面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> データなし    </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> その他     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> 内水面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> データなし    </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> 内水面     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> その他     -</span><span style='color: #BB0000;text-decoration: underline;'>9</span><span style='color: #BB0000;'>999</span><span>
-#&gt; </span><span style='color: #555555;'># … with 33,740 more rows</span><span></div><div class='input'><span class='co'># return as raster</span>
+#&gt;    &lt;chr&gt;        [m]
+#&gt;  1 その他     -9999
+#&gt;  2 地表面     -9999
+#&gt;  3 海水面     -9999
+#&gt;  4 地表面     -9999
+#&gt;  5 データなし    NA
+#&gt;  6 その他     -9999
+#&gt;  7 内水面     -9999
+#&gt;  8 データなし    NA
+#&gt;  9 内水面     -9999
+#&gt; 10 その他     -9999
+#&gt; # … with 33,740 more rows</div><div class='input'><span class='co'># return as raster</span>
 <span class='fu'>read_fgd_dem</span>(<span class='no'>fgd_5dem</span>,
              <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>5</span>,
              <span class='kw'>return_class</span> <span class='kw'>=</span> <span class='st'>"raster"</span>)</div><div class='output co'>#&gt; class      : RasterLayer 
 #&gt; dimensions : 150, 225, 33750  (nrow, ncol, ncell)
-#&gt; resolution : 5.555556e-05, 5.555555e-05  (x, y)
-#&gt; extent     : 100, 100.0125, 0, 0.008333333  (xmin, xmax, ymin, ymax)
+#&gt; resolution : 5.555556e-05, 5.553333e-05  (x, y)
+#&gt; extent     : 140.1, 140.1125, 36.075, 36.08333  (xmin, xmax, ymin, ymax)
 #&gt; crs        : +proj=longlat +ellps=GRS80 +no_defs 
 #&gt; source     : memory
 #&gt; names      : layer 
@@ -202,22 +202,14 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
 #&gt;  Max.   :-9999   
 #&gt;  NA's   :843741  
 #&gt; dimension(s):
-#&gt;   from   to    offset        delta                       refsys point values
-#&gt; x    1 1125       100  0.000111111 +proj=longlat +ellps=GRS8...    NA   NULL
-#&gt; y    1  750 0.0833333 -0.000111111 +proj=longlat +ellps=GRS8...    NA   NULL
-#&gt;      
-#&gt; x [x]
-#&gt; y [y]</div></span></pre>
+#&gt;   from   to  offset        delta                       refsys point values    
+#&gt; x    1 1125     140  0.000111111 +proj=longlat +ellps=GRS8...    NA   NULL [x]
+#&gt; y    1  750 36.0833 -0.000111107 +proj=longlat +ellps=GRS8...    NA   NULL [y]</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -228,7 +220,7 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
