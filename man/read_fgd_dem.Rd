@@ -4,11 +4,7 @@
 \alias{read_fgd_dem}
 \title{Read and Parse Fundamental Geospatial Data (FGD) dem file}
 \usage{
-read_fgd_dem(
-  file,
-  resolution = c(5, 10),
-  return_class = c("df", "raster", "stars")
-)
+read_fgd_dem(file, resolution = c(5, 10), return_class)
 }
 \arguments{
 \item{file}{Path to XML file}
@@ -29,7 +25,8 @@ Supporting FGD Version 4.1 (2016/10/31)
 \examples{
 fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
 read_fgd_dem(fgd_5dem,
-             resolution = 5)
+             resolution = 5,
+             return_class = "df")
 # return as raster
 read_fgd_dem(fgd_5dem,
              resolution = 5,

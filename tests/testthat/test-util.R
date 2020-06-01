@@ -51,7 +51,7 @@ test_that("dem validation", {
   expect_named(res, c("xml_docs", "type", "is5m", "meshcode"))
   expect_equal(res$type, "DEM")
   expect_true(res$is5m)
-  expect_equal(res$meshcode, "00000000")
+  expect_equal(res$meshcode, "54400098")
   res <-
     fgd_dem_file_info(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
                                   package = "fgdr"))
@@ -60,7 +60,7 @@ test_that("dem validation", {
   expect_named(res, c("xml_docs", "type", "is5m", "meshcode"))
   expect_equal(res$type, "DEM")
   expect_false(res$is5m)
-  expect_equal(res$meshcode, "000000")
+  expect_equal(res$meshcode, "544000")
 })
 
 test_that("standard", {

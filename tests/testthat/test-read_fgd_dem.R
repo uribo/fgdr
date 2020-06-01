@@ -4,7 +4,8 @@ test_that("Successed on dummies", {
   res <-
     read_fgd_dem(file = system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml",
                                     package = "fgdr"),
-                 resolution = 5)
+                 resolution = 5,
+                 return_class = "df")
   expect_is(res, "data.frame")
   expect_identical(as.character(res[1, 1]),
                    paste(intToUtf8(c(12381, 12398, 20182), multiple = TRUE), collapse = ""))
@@ -23,7 +24,8 @@ test_that("Successed on dummies", {
   res <-
     read_fgd_dem(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
                              package = "fgdr"),
-                 resolution = 10)
+                 resolution = 10,
+                 return_class = "df")
   expect_is(res, "data.frame")
   expect_s3_class(res, "tbl_df")
   expect_equal(dim(res), c(843750, 2))

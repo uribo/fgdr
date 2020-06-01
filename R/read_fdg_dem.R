@@ -21,7 +21,8 @@
 #' @examples
 #' fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
 #' read_fgd_dem(fgd_5dem,
-#'              resolution = 5)
+#'              resolution = 5,
+#'              return_class = "df")
 #' # return as raster
 #' read_fgd_dem(fgd_5dem,
 #'              resolution = 5,
@@ -32,10 +33,12 @@
 #'              resolution = 10,
 #'              return_class = "stars")
 read_fgd_dem <- function(file, resolution = c(5, 10),
-                         return_class = c("df", "raster", "stars")) {
+                         return_class) {
   . <- value <- NULL
   output_type <-
-    rlang::arg_match(return_class)
+    rlang::arg_match(
+      return_class,
+      c("df", "raster", "stars"))
   if (resolution == 5) {
     grid_size <- list(x = 225, y = 150)
     xml_opts <- "NOBLANKS"
