@@ -14,18 +14,6 @@ RUN set -x && \
   echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
 
 RUN set -x && \
-  install2.r --error \
-    ensurer \
-    jpmesh \
-    mapview \
-    raster \
-    rgdal \
-    reprex \
-    roxygen2 \
-    sf \
-    stars \
-    usethis \
-    zeallot && \
-  installGithub.r \
-    "dantonnoriega/xmltools" && \
+  install2.r --error --skipinstalled --repos 'http://mran.revolutionanalytics.com/snapshot/2020-05-30' \
+    renv && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
