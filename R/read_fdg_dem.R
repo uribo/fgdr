@@ -81,7 +81,9 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
       )
   }
   if (output_type == "df") {
-    df_dem_full
+    df_dem_full %>%
+      purrr::modify_at(2,
+                       ~ units::set_units(.x, "m"))
   } else if (output_type %in% c("raster", "stars")) {
     res <-
       df_dem_full %>%
