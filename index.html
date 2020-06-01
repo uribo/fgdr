@@ -120,7 +120,7 @@
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; geometry type:  POINT</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; dimension:      XY</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; bbox:           xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; CRS:            EPSG:6668</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; geographic CRS: JGD2011</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; # A tibble: 4 x 9</span></span>
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;   gml_id type  name  adm_code life_span_from development_date org_gi_level</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;</span></span>
@@ -135,7 +135,7 @@
 <span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; geometry type:  POLYGON</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; dimension:      XY</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; CRS:            EPSG:6668</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; geographic CRS: JGD2011</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; # A tibble: 4 x 9</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;   gml_id type  name  adm_code life_span_from development_date org_gi_level</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;</span></span>
@@ -153,10 +153,11 @@
 <h3 class="hasAnchor">
 <a href="#5m%E3%83%A1%E3%83%83%E3%82%B7%E3%83%A5" class="anchor"></a>5mメッシュ</h3>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="fu"><a href="reference/read_fgd_dem.html">read_fgd_dem</a></span>(<span class="st">"FG-GML-5135-63-00-DEM5A-20161001.xml"</span>,
-             <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">5</span>)</pre></div>
+             <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">5</span>,
+             <span class="kw">return_class</span> <span class="kw">=</span> <span class="st">"df"</span>)</pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#&gt; # A tibble: 33,750 x 2</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt;    type       value</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;    &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;    &lt;chr&gt;        [m]</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;  1 データなし    NA</span></span>
 <span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;  2 データなし    NA</span></span>
 <span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;  3 データなし    NA</span></span>
