@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.2
+FROM rocker/tidyverse:4.0.0
 
 RUN set -x && \
   apt-get update && \
