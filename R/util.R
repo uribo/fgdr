@@ -42,9 +42,7 @@ set_coords <- function(raster, meshcode) {
   raster::extent(raster) <-
     raster::extent(bb[1], bb[3], bb[2], bb[4])
   raster::crs(raster) <-
-    mesh %>%
-    sf::as_Spatial() %>%
-    sp::proj4string()
+    sf::st_crs(6668)$proj4string
   raster
 }
 
