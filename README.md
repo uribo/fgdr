@@ -3,8 +3,7 @@
 
 # fgdr <img src="man/figures/logo.png" align="right" width="120px" />
 
-(Sorry, English version of README is not availavle for
-now.)
+(Sorry, English version of README is not availavle for now.)
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
 [![CRAN RStudio mirror
@@ -45,8 +44,7 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
 このパッケージには、基盤地図情報データダウロードサービスが提供している
 
   - 基本項目
-  - 数値標高モデル (5m,
-10mメッシュ)
+  - 数値標高モデル (5m, 10mメッシュ)
 
 について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster)
 ([stars](https://github.com/r-spatial/stars))として返却する関数が備わっています。
@@ -70,7 +68,7 @@ read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
     #> geometry type:  POINT
     #> dimension:      XY
     #> bbox:           xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013
-    #> CRS:            EPSG:6668
+    #> geographic CRS: JGD2011
     #> # A tibble: 4 x 9
     #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
     #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
@@ -90,7 +88,7 @@ read_fgd("FG-GML-523346-AdmArea-20180701-0001.xml")
     #> geometry type:  POLYGON
     #> dimension:      XY
     #> bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333
-    #> CRS:            EPSG:6668
+    #> geographic CRS: JGD2011
     #> # A tibble: 4 x 9
     #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
     #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
@@ -109,12 +107,13 @@ read_fgd("FG-GML-523346-AdmArea-20180701-0001.xml")
 
 ``` r
 read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml", 
-             resolution = 5)
+             resolution = 5,
+             return_class = "df")
 ```
 
     #> # A tibble: 33,750 x 2
     #>    type       value
-    #>    <chr>      <dbl>
+    #>    <chr>        [m]
     #>  1 データなし    NA
     #>  2 データなし    NA
     #>  3 データなし    NA
