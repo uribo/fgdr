@@ -3,6 +3,7 @@ FROM rocker/tidyverse:4.0.0
 RUN set -x && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+    fonts-ipaexfont \
     libgdal-dev \
     libudunits2-dev && \
   apt-get clean && \
