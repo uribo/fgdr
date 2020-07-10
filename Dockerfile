@@ -27,6 +27,7 @@ RUN set -x && \
     mapview \
     reprex \
     stars \
+    terra \
     usethis \
     zeallot \
     renv && \

@@ -714,6 +714,18 @@
       "Repository": "CRAN",
       "Hash": "507f3116a38d37ad330a038b3be07b66"
     },
+    "terra": {
+      "Package": "terra",
+      "Version": "0.8-2",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "rspatial",
+      "RemoteRepo": "terra",
+      "RemoteRef": "master",
+      "RemoteSha": "53fce7c9375f1b0c3f6bb0e699bd29ccdfebce00",
+      "Hash": "119b8562d426c4cb4acc41e8f7c93420"
+    },
     "testthat": {
       "Package": "testthat",
       "Version": "2.3.2",
