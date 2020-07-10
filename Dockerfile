@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.0.0
+FROM rocker/tidyverse:4.0.2
 
 RUN set -x && \
   apt-get update && \
@@ -20,7 +20,7 @@ RUN set -x && \
   echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
 
 RUN set -x && \
-  install2.r --error --ncpus -1 --repos 'http://mran.revolutionanalytics.com/snapshot/2020-05-30' \
+  install2.r --error --ncpus -1 --repos 'http://mran.revolutionanalytics.com/snapshot/2020-07-09' \
     devtools \
     ensurer \
     jpmesh \
