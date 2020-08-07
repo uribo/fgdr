@@ -11,8 +11,9 @@ read_fgd_dem(file, resolution = c(5, 10), return_class)
 
 \item{resolution}{the number of dem mesh size resolution: 5m or 10m}
 
-\item{return_class}{one of return object class: 'df' (\link{data.frame}, default),
-'\link[raster:raster]{raster}', '\link[stars:st_as_stars]{stars}' or '\link[terra:rast]{terra}'}
+\item{return_class}{one of return object class: '\link[data.table:data.table]{data.table}'
+for faster than data.frame, '\link{data.frame}', '\link[raster:raster]{raster}',
+'\link[stars:st_as_stars]{stars}' or '\link[terra:rast]{terra}'}
 }
 \value{
 A \link[tibble:tibble]{tibble} (data.frame), \link[raster:raster]{raster},
@@ -28,7 +29,10 @@ Supporting FGD Version 4.1 (2016/10/31)
 fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
 read_fgd_dem(fgd_5dem,
              resolution = 5,
-             return_class = "df")
+             return_class = "data.table")
+read_fgd_dem(fgd_5dem,
+             resolution = 5,
+             return_class = "data.frame")
 # return as raster
 read_fgd_dem(fgd_5dem,
              resolution = 5,

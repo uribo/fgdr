@@ -5,7 +5,8 @@ RUN set -x && \
   apt-get install -y --no-install-recommends \
     fonts-ipaexfont \
     libgdal-dev \
-    libudunits2-dev && \
+    libudunits2-dev \
+    zlib1g-dev && \
   apt-get install -y \
     r-cran-sf \
     r-cran-raster \
@@ -21,6 +22,7 @@ RUN set -x && \
 
 RUN set -x && \
   install2.r --error --ncpus -1 --repos 'https://mran.revolutionanalytics.com/snapshot/2020-08-05' \
+    data.table \
     devtools \
     ensurer \
     jpmesh \
