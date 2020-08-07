@@ -39,10 +39,17 @@ set_coords <- function(raster, meshcode) {
     mesh %>%
     sf::st_bbox() %>%
     as.numeric()
-  raster::extent(raster) <-
-    raster::extent(bb[1], bb[3], bb[2], bb[4])
-  raster::crs(raster) <-
-    sf::st_crs(6668)$proj4string
+  if (identical(c(class(raster)), "SpatRaster")) {
+    terra::ext(raster) <-
+      terra::ext(bb[1], bb[3], bb[2], bb[4])
+    terra::crs(raster) <-
+      sf::st_crs(6668)$proj4string
+  } else if (identical(c(class(raster)), "RasterLayer")) {
+    raster::extent(raster) <-
+      raster::extent(bb[1], bb[3], bb[2], bb[4])
+    raster::crs(raster) <-
+      sf::st_crs(6668)$proj4string
+  }
   raster
 }
 

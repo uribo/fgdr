@@ -12,14 +12,16 @@ read_fgd_dem(file, resolution = c(5, 10), return_class)
 \item{resolution}{the number of dem mesh size resolution: 5m or 10m}
 
 \item{return_class}{one of return object class: 'df' (\link{data.frame}, default),
-'\link[raster:raster]{raster}' or '\link[stars:st_as_stars]{stars}'}
+'\link[raster:raster]{raster}', '\link[stars:st_as_stars]{stars}' or '\link[terra:rast]{terra}'}
 }
 \value{
-A \link[tibble:tibble]{tibble} (data.frame), \link[raster:raster]{raster} or \link[stars:st_as_stars]{stars}
+A \link[tibble:tibble]{tibble} (data.frame), \link[raster:raster]{raster},
+\link[stars:st_as_stars]{stars} or \link[terra:rast]{terra}
 }
 \description{
 The JPGIS (GML) format file provided by FGD as input,
-the digital elevation models in the file are read as a data.frame or spatial object (raster or stars).
+the digital elevation models in the file are read as a data.frame or
+spatial object (raster, stars or terra).
 Supporting FGD Version 4.1 (2016/10/31)
 }
 \examples{
