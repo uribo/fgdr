@@ -8,14 +8,17 @@
 #'
 #' @inheritParams read_fgd
 #' @param resolution the number of dem mesh size resolution: 5m or 10m
-#' @param return_class one of return object class: 'df' ([data.frame][data.frame], default),
-#' '[raster][raster::raster]', '[stars][stars::st_as_stars]' or '[terra][terra::rast]'
+#' @param return_class one of return object class: '[data.table][data.table::data.table]'
+#' for faster than data.frame, '[data.frame][data.frame]', '[raster][raster::raster]',
+#' '[stars][stars::st_as_stars]' or '[terra][terra::rast]'
 #' @import xml2
+#' @importFrom data.table fread
 #' @importFrom purrr pluck reduce
 #' @importFrom raster raster
 #' @importFrom rlang arg_match warn
 #' @importFrom tibble add_row
 #' @importFrom readr read_csv
+#' @importFrom terra rast
 #' @importFrom stars st_as_stars
 #' @return A [tibble][tibble::tibble] (data.frame), [raster][raster::raster],
 #' [stars][stars::st_as_stars] or [terra][terra::rast]
@@ -24,7 +27,10 @@
 #' fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
 #' read_fgd_dem(fgd_5dem,
 #'              resolution = 5,
-#'              return_class = "df")
+#'              return_class = "data.table")
+#' read_fgd_dem(fgd_5dem,
+#'              resolution = 5,
+#'              return_class = "data.frame")
 #' # return as raster
 #' read_fgd_dem(fgd_5dem,
 #'              resolution = 5,
@@ -40,7 +46,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
   output_type <-
     rlang::arg_match(
       return_class,
-      c("df", "raster", "stars", "terra"))
+      c("data.table", "data.frame", "raster", "stars", "terra"))
   if (resolution == 5) {
     grid_size <- list(x = 225, y = 150)
     xml_opts <- "NOBLANKS"
@@ -52,13 +58,22 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
     dem_check(file, .verbose = FALSE, options = xml_opts)
   file_info <-
     fgd_dem_file_info(file, options = xml_opts)
-  df_dem <-
+  input_x <-
     file_info$xml_docs %>%
     xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>% # nolint
     xml2::xml_contents() %>%
-    as.character() %>%
-    readr::read_csv(col_names = c("type", "value"),
-                    col_types = c("cd"))
+    as.character()
+  if (output_type == "data.table") {
+    df_dem <-
+      input_x %>%
+      data.table::fread(col.names = c("type", "value"),
+                        colClasses = c("character", "double"))
+  } else {
+    df_dem <-
+      input_x %>%
+      readr::read_csv(col_names = c("type", "value"),
+                      col_types = c("cd"))
+  }
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
   if (identical(checked, c(0L, 0L))) {
     df_dem_full <-
@@ -68,7 +83,7 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
       df_dem %>%
       tibble::add_row(
         type = rep("\u30c7\u30fc\u30bf\u306a\u3057",
-                   times = (as.numeric(checked[1]) + as.numeric(checked[2]) * grid_size$x)),
+                   times = (as.numeric(checked[1]) + as.numeric(checked[2]) * grid_size$x)), # nolint
         value = NA_real_,
         .before = 0)
   }
@@ -78,10 +93,9 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
       tibble::add_row(
         type = rep("\u30c7\u30fc\u30bf\u306a\u3057",
                    times = (purrr::reduce(grid_size, `*`) - nrow(.))),
-        value = NA_real_
-      )
+        value = NA_real_)
   }
-  if (output_type == "df") {
+  if (output_type %in% c("data.table", "data.frame")) {
     df_dem_full %>%
       purrr::modify_at(2,
                        ~ units::set_units(.x, "m"))

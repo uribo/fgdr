@@ -79,26 +79,21 @@ fgd_file_info <- function(file, ...) {
 }
 
 fgd_dem_file_info <- function(file, ...) {
-
   file_info <-
     fgd_file_info(file, ...)
-
   is5m <-
     file_info$xml_docs %>%
     xml2::xml_find_first("/*/*[3]/*[6]") %>% # nolint
     xml2::xml_contents() %>%
     as.character() %>%
     stringr::str_detect("5m")
-
   meshcode <-
     file_info$xml_docs %>%
     xml2::xml_find_all("/*/*[3]/*[7]") %>% # nolint
     xml2::xml_contents() %>%
     as.character()
-
   list(xml_docs = file_info$xml_docs,
        type = file_info$type,
        is5m = is5m,
        meshcode = meshcode)
-
 }
