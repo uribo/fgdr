@@ -40,4 +40,28 @@ test_that("Successed on dummies", {
   expect_equal(dim(res), c(843750, 2))
   expect_named(res, c("type", "value"))
   expect_equal(unique(res$value), c(-9999L, NA_real_))
+  res_stars <-
+    read_fgd_dem(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
+                             package = "fgdr"),
+                 resolution = 10,
+                 return_class = "stars")
+  expect_s3_class(res_stars, "stars")
+  expect_equal(c(res_stars$layer),
+               units::drop_units(res$value))
+  res_raster <-
+    read_fgd_dem(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
+                             package = "fgdr"),
+                 resolution = 10,
+                 return_class = "raster")
+  expect_s4_class(res_raster, "RasterLayer")
+  expect_equal(raster::values(res_raster),
+               units::drop_units(res$value))
+  res_terra <-
+    read_fgd_dem(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
+                             package = "fgdr"),
+                 resolution = 10,
+                 return_class = "terra")
+  expect_s4_class(res_terra, "SpatRaster")
+  expect_equal(c(terra::values(res_terra)),
+               units::drop_units(res$value))
 })
