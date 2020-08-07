@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.0.2
+FROM rocker/tidyverse:4.0.2@sha256:cbc4ee809d594f0f6765be1d0fa046f48dfcda7340b5830473dd28fc71940c3c
 
 RUN set -x && \
   apt-get update && \
@@ -20,13 +20,14 @@ RUN set -x && \
   echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
 
 RUN set -x && \
-  install2.r --error --ncpus -1 --repos 'http://mran.revolutionanalytics.com/snapshot/2020-07-09' \
+  install2.r --error --ncpus -1 --repos 'https://mran.revolutionanalytics.com/snapshot/2020-08-05' \
     devtools \
     ensurer \
     jpmesh \
     mapview \
     reprex \
     stars \
+    terra \
     usethis \
     zeallot \
     renv && \

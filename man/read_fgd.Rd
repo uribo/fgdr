@@ -10,7 +10,7 @@ read_fgd(file)
 \item{file}{Path to XML file}
 }
 \value{
-A \link[sf:st_sf]{sf}
+A \link[sf:sf]{sf}
 }
 \description{
 The JPGIS (GML) format file provided by FGD as input,
