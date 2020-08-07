@@ -1,5 +1,6 @@
 # fgdr (development version)
 
+* Added support for terra format output with `read_fgd_dem()` 
 * When a DEM file is read and returned as a df, a unit (meter) attribute is added to the elevation value.
 
 # fgdr 1.0.1
