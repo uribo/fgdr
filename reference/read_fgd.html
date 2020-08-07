@@ -132,7 +132,7 @@ the fundamental items in the file is read as an 'sf' object.
 Supporting FGD Version 4.1 (2016/10/31).</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/fgdr/man/read_fgd.html'>read_fgd</a></span>(<span class='kw'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>read_fgd</span>(<span class='kw'>file</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,17 +163,12 @@ Waterside Structure Line ('WStrL').</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Administrative Area</span>
-<span class='fu'><a href='https://rdrr.io/pkg/fgdr/man/read_fgd.html'>read_fgd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/FG-GML-000000-AdmPt-dummy.xml"</span>, package = <span class='st'>"fgdr"</span>))</div><div class='output co'>#&gt; Simple feature collection with 1 feature and 8 fields
+<span class='fu'>read_fgd</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/FG-GML-000000-AdmPt-dummy.xml"</span>, package = <span class='st'>"fgdr"</span>))</div><div class='output co'>#&gt; Simple feature collection with 1 feature and 8 fields
 #&gt; geometry type:  POINT
 #&gt; dimension:      XY
 #&gt; bbox:           xmin: 140.085 ymin: 36.1035 xmax: 140.085 ymax: 36.1035
-#&gt; CRS:            EPSG:6668</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 1 x 9
+#&gt; geographic CRS: JGD2011
+#&gt; # A tibble: 1 x 9
 #&gt;   gml_id type  name  adm_code life_span_from development_date org_gi_level
 #&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;
 #&gt; 1 K6_00… 郡市・東… dummy 00000    2018-12-01     2018-12-01              25000

@@ -127,6 +127,8 @@
 <a href="#fgdr-development-version" class="anchor"></a>fgdr (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li>Added support for terra format output with <code><a href="../reference/read_fgd_dem.html">read_fgd_dem()</a></code>
+</li>
 <li>When a DEM file is read and returned as a df, a unit (meter) attribute is added to the elevation value.</li>
 </ul>
 </div>
@@ -144,12 +146,12 @@
 </h1>
 <ul>
 <li>
-<code>read_fdg()</code> and <code><a href="https://rdrr.io/pkg/fgdr/man/read_fgd_dem.html">read_fgd_dem()</a></code> always return JGD2011 (SRID: 6668).</li>
+<code>read_fdg()</code> and <code><a href="../reference/read_fgd_dem.html">read_fgd_dem()</a></code> always return JGD2011 (SRID: 6668).</li>
 <li>
 <code>read_fdg()</code> always return <code>sf</code> object regardless of what kind of file is given (<a href="https://github.com/uribo/fgdr/pull/7"><a href='https://github.com/uribo/fgdr/issues/7'>#7</a></a>).</li>
 <li>Change handling no data. It as <code>NA_real</code> instead of <code>-9999</code> (<a href="https://github.com/uribo/fgdr/issues/5"><a href='https://github.com/uribo/fgdr/issues/5'>#5</a></a>).</li>
 <li>
-<code><a href="https://rdrr.io/pkg/fgdr/man/read_fgd_dem.html">read_fgd_dem()</a></code>’s handling to fill up missing value cell improvement (<a href='https://github.com/nonsabotage'>@nonsabotage</a>, <a href="https://github.com/uribo/fgdr/issues/3"><a href='https://github.com/uribo/fgdr/issues/3'>#3</a></a>).</li>
+<code><a href="../reference/read_fgd_dem.html">read_fgd_dem()</a></code>’s handling to fill up missing value cell improvement (<a href='https://github.com/nonsabotage'>@nonsabotage</a>, <a href="https://github.com/uribo/fgdr/issues/3"><a href='https://github.com/uribo/fgdr/issues/3'>#3</a></a>).</li>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 </ul>
 </div>
