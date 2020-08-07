@@ -89,13 +89,13 @@ read_fgd("data-raw/PackDLMap/FG-GML-523346-ALL-20180701/FG-GML-523346-AdmArea-20
 ```{r, eval = FALSE, echo = TRUE}
 read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml", 
              resolution = 5,
-             return_class = "df")
+             return_class = "data.table")
 ```
 
 ```{r, eval = TRUE, echo = FALSE}
 read_fgd_dem("data-raw/FG-GML-5135-63-DEM5A/FG-GML-5135-63-00-DEM5A-20161001.xml", 
              resolution = 5,
-             return_class = "df")
+             return_class = "data.table")
 ```
 
 デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class = `によりrasterを選ぶことも可能です。rasterとして読み込み、可視化する例を示します。
