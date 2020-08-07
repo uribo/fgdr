@@ -20,6 +20,7 @@ Imports:
     sp (>= 1.3.1),
     stars (>= 0.3-1),
     stringr (>= 1.3.1),
+    terra (>= 0.8-2),
     tibble (>= 3.0.0),
     units (>= 0.6.6),
     xml2 (>= 1.2.0)
@@ -28,13 +29,10 @@ LazyData: true
 URL: https://github.com/uribo/fgdr
 BugReports: https://github.com/uribo/fgdr/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests:
     covr (>= 3.4.0),
     roxygen2 (>= 6.1.1),
-    terra (>= 0.8-2),
     testthat (>= 2.3.1)
 Depends: 
     R (>= 3.3.0)
-Remotes:
-    rspatial/terra
