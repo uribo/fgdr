@@ -4,11 +4,7 @@
 \alias{read_fgd_dem}
 \title{Read and Parse Fundamental Geospatial Data (FGD) dem file}
 \usage{
-read_fgd_dem(
-  file,
-  resolution = c(5, 10),
-  return_class = c("df", "raster", "stars")
-)
+read_fgd_dem(file, resolution = c(5, 10), return_class)
 }
 \arguments{
 \item{file}{Path to XML file}
@@ -16,20 +12,23 @@ read_fgd_dem(
 \item{resolution}{the number of dem mesh size resolution: 5m or 10m}
 
 \item{return_class}{one of return object class: 'df' (\link{data.frame}, default),
-'\link[raster:raster]{raster}' or '\link[stars:st_as_stars]{stars}'}
+'\link[raster:raster]{raster}', '\link[stars:st_as_stars]{stars}' or '\link[terra:rast]{terra}'}
 }
 \value{
-A \link[tibble:tibble]{tibble} (data.frame), \link[raster:raster]{raster} or \link[stars:st_as_stars]{stars}
+A \link[tibble:tibble]{tibble} (data.frame), \link[raster:raster]{raster},
+\link[stars:st_as_stars]{stars} or \link[terra:rast]{terra}
 }
 \description{
 The JPGIS (GML) format file provided by FGD as input,
-the digital elevation models in the file are read as a data.frame or spatial object (raster or stars).
+the digital elevation models in the file are read as a data.frame or
+spatial object (raster, stars or terra).
 Supporting FGD Version 4.1 (2016/10/31)
 }
 \examples{
 fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
 read_fgd_dem(fgd_5dem,
-             resolution = 5)
+             resolution = 5,
+             return_class = "df")
 # return as raster
 read_fgd_dem(fgd_5dem,
              resolution = 5,

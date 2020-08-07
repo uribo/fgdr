@@ -21,9 +21,10 @@ dem_check <- function(file, .verbose = TRUE, ...) {
       xml2::xml_find_all("/*/*/*/gml:coverageFunction/gml:GridFunction/gml:startPoint") %>% # nolint
       xml2::xml_text() %>%
       stringr::str_split("[[:space:]]") %>%
-      unlist()
+      unlist() %>%
+      as.integer()
     if (.verbose == TRUE)
-      if (!all.equal(start_point, c("0", "0")))
+      if (!all.equal(start_point, c(0L, 0L)))
         rlang::inform("Data is not given from the starting point.\nCheck these coordinate")
     start_point
   }
@@ -38,12 +39,17 @@ set_coords <- function(raster, meshcode) {
     mesh %>%
     sf::st_bbox() %>%
     as.numeric()
-  raster::extent(raster) <-
-    raster::extent(bb[1], bb[3], bb[2], bb[4])
-  raster::crs(raster) <-
-    mesh %>%
-    sf::as_Spatial() %>%
-    sp::proj4string()
+  if (identical(c(class(raster)), "SpatRaster")) {
+    terra::ext(raster) <-
+      terra::ext(bb[1], bb[3], bb[2], bb[4])
+    terra::crs(raster) <-
+      sf::st_crs(6668)$proj4string
+  } else if (identical(c(class(raster)), "RasterLayer")) {
+    raster::extent(raster) <-
+      raster::extent(bb[1], bb[3], bb[2], bb[4])
+    raster::crs(raster) <-
+      sf::st_crs(6668)$proj4string
+  }
   raster
 }
 

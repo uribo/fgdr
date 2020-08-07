@@ -1,14 +1,15 @@
 #' @title Read and Parse Fundamental Geospatial Data (FGD) dem file
 #'
 #' @description The JPGIS (GML) format file provided by FGD as input,
-#' the digital elevation models in the file are read as a data.frame or spatial object (raster or stars).
+#' the digital elevation models in the file are read as a data.frame or
+#' spatial object (raster, stars or terra).
 #' Supporting FGD Version 4.1 (2016/10/31)
 #' @seealso \url{https://fgd.gsi.go.jp/download/ref_dem.html}
 #'
 #' @inheritParams read_fgd
 #' @param resolution the number of dem mesh size resolution: 5m or 10m
 #' @param return_class one of return object class: 'df' ([data.frame][data.frame], default),
-#' '[raster][raster::raster]' or '[stars][stars::st_as_stars]'
+#' '[raster][raster::raster]', '[stars][stars::st_as_stars]' or '[terra][terra::rast]'
 #' @import xml2
 #' @importFrom purrr pluck reduce
 #' @importFrom raster raster
@@ -16,12 +17,14 @@
 #' @importFrom tibble add_row
 #' @importFrom readr read_csv
 #' @importFrom stars st_as_stars
-#' @return A [tibble][tibble::tibble] (data.frame), [raster][raster::raster] or [stars][stars::st_as_stars]
+#' @return A [tibble][tibble::tibble] (data.frame), [raster][raster::raster],
+#' [stars][stars::st_as_stars] or [terra][terra::rast]
 #' @export
 #' @examples
 #' fgd_5dem <- system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml", package = "fgdr")
 #' read_fgd_dem(fgd_5dem,
-#'              resolution = 5)
+#'              resolution = 5,
+#'              return_class = "df")
 #' # return as raster
 #' read_fgd_dem(fgd_5dem,
 #'              resolution = 5,
@@ -32,10 +35,12 @@
 #'              resolution = 10,
 #'              return_class = "stars")
 read_fgd_dem <- function(file, resolution = c(5, 10),
-                         return_class = c("df", "raster", "stars")) {
+                         return_class) {
   . <- value <- NULL
   output_type <-
-    rlang::arg_match(return_class)
+    rlang::arg_match(
+      return_class,
+      c("df", "raster", "stars", "terra"))
   if (resolution == 5) {
     grid_size <- list(x = 225, y = 150)
     xml_opts <- "NOBLANKS"
@@ -50,11 +55,12 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
   df_dem <-
     file_info$xml_docs %>%
     xml2::xml_find_all("/*/*/*/gml:rangeSet/gml:DataBlock/gml:tupleList") %>% # nolint
-    xml2::xml_text() %>%
-    data.table::fread(col.names = c("type", "value"),
-                      colClasses = c("character", "double"))
+    xml2::xml_contents() %>%
+    as.character() %>%
+    readr::read_csv(col_names = c("type", "value"),
+                    col_types = c("cd"))
   df_dem$value[df_dem$type == "\u30c7\u30fc\u30bf\u306a\u3057"] <- NA_real_
-  if (identical(checked, c("0", "0"))) {
+  if (identical(checked, c(0L, 0L))) {
     df_dem_full <-
       df_dem
   } else {
@@ -77,20 +83,30 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
   }
   if (output_type == "df") {
     df_dem_full %>%
-      as.data.frame() %>%
-      tibble::as_tibble()
-  } else if (output_type %in% c("raster", "stars")) {
-    res <-
+      purrr::modify_at(2,
+                       ~ units::set_units(.x, "m"))
+  } else if (output_type %in% c("raster", "stars", "terra")) {
+    rast_mat <-
       df_dem_full %>%
       purrr::pluck("value") %>%
       matrix(nrow = grid_size$x, ncol = grid_size$y) %>%
-      t() %>%
-      raster::raster() %>%
-      set_coords(meshcode = file_info$meshcode)
-    if (output_type == "raster") {
-      res
-    } else if (output_type == "stars") {
-      stars::st_as_stars(res)
+      t()
+    if (output_type == "terra") {
+      rast_mat %>%
+        terra::rast() %>%
+        set_coords(meshcode = file_info$meshcode)
+    } else {
+      if (output_type %in% c("raster", "stars")) {
+        res <-
+          rast_mat %>%
+          raster::raster() %>%
+          set_coords(meshcode = file_info$meshcode)
+      }
+      if (output_type == "raster") {
+        res
+      } else if (output_type == "stars") {
+        stars::st_as_stars(res)
+      }
     }
   }
 }

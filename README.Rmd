@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 (Sorry, English version of README is not availavle for now.)
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-blue.svg)](https://cran.r-project.org/)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg)](https://cran.r-project.org/)
 
 [![Travis build status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr) [![Codecov test coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://codecov.io/gh/uribo/fgdr?branch=master)
 
@@ -52,7 +52,7 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
 
 について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster) ([stars](https://github.com/r-spatial/stars))として返却する関数が備わっています。
 
-```{r}
+```{r, message=FALSE}
 library(fgdr)
 library(raster)
 library(sf)
@@ -88,12 +88,14 @@ read_fgd("data-raw/PackDLMap/FG-GML-523346-ALL-20180701/FG-GML-523346-AdmArea-20
 
 ```{r, eval = FALSE, echo = TRUE}
 read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml", 
-             resolution = 5)
+             resolution = 5,
+             return_class = "df")
 ```
 
 ```{r, eval = TRUE, echo = FALSE}
 read_fgd_dem("data-raw/FG-GML-5135-63-DEM5A/FG-GML-5135-63-00-DEM5A-20161001.xml", 
-             resolution = 5)
+             resolution = 5,
+             return_class = "df")
 ```
 
 デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class = `によりrasterを選ぶことも可能です。rasterとして読み込み、可視化する例を示します。
