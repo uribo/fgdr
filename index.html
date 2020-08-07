@@ -166,22 +166,20 @@
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="reference/read_fgd_dem.html">read_fgd_dem</a></span>(<span class="st">"FG-GML-5135-63-00-DEM5A-20161001.xml"</span>, 
              resolution = <span class="fl">5</span>,
-             return_class = <span class="st">"df"</span>)
+             return_class = <span class="st">"data.table"</span>)
 </pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#&gt; # A tibble: 33,750 x 2</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt;    type       value</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;    &lt;chr&gt;        [m]</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;  1 データなし    NA</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;  2 データなし    NA</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;  3 データなし    NA</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;  4 データなし    NA</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;  5 データなし    NA</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt;  6 データなし    NA</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt;  7 データなし    NA</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt;  8 データなし    NA</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt;  9 データなし    NA</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; 10 データなし    NA</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; # … with 33,740 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#&gt;              type     value</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt;     1: データなし    NA [m]</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;     2: データなし    NA [m]</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;     3: データなし    NA [m]</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;     4: データなし    NA [m]</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;     5: データなし    NA [m]</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;    ---                     </span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; 33746:     内水面 -9999 [m]</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; 33747:     内水面 -9999 [m]</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; 33748:     内水面 -9999 [m]</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; 33749:     内水面 -9999 [m]</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; 33750:     内水面 -9999 [m]</span></span></code></pre></div>
 <p>デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数<code>return_class =</code>によりrasterを選ぶことも可能です。rasterとして読み込み、可視化する例を示します。</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="kw">r</span> <span class="op">&lt;-</span> 

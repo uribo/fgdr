@@ -149,8 +149,9 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
     </tr>
     <tr>
       <th>return_class</th>
-      <td><p>one of return object class: 'df' (<a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a>, default),
-'<a href='https://rdrr.io/pkg/raster/man/raster.html'>raster</a>', '<a href='https://rdrr.io/pkg/stars/man/st_as_stars.html'>stars</a>' or '<a href='https://rdrr.io/pkg/terra/man/rast.html'>terra</a>'</p></td>
+      <td><p>one of return object class: '<a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a>'
+for faster than data.frame, '<a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a>', '<a href='https://rdrr.io/pkg/raster/man/raster.html'>raster</a>',
+'<a href='https://rdrr.io/pkg/stars/man/st_as_stars.html'>stars</a>' or '<a href='https://rdrr.io/pkg/terra/man/rast.html'>terra</a>'</p></td>
     </tr>
     </table>
 
@@ -166,7 +167,20 @@ Supporting FGD Version 4.1 (2016/10/31)</p>
     <pre class="examples"><div class='input'><span class='kw'>fgd_5dem</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/FG-GML-0000-00-00-DEM5A-dummy.xml"</span>, package = <span class='st'>"fgdr"</span>)
 <span class='fu'>read_fgd_dem</span>(<span class='kw'>fgd_5dem</span>,
              resolution = <span class='fl'>5</span>,
-             return_class = <span class='st'>"df"</span>)</div><div class='output co'>#&gt; # A tibble: 33,750 x 2
+             return_class = <span class='st'>"data.table"</span>)</div><div class='output co'>#&gt;              type     value
+#&gt;     1:     その他 -9999 [m]
+#&gt;     2:     地表面 -9999 [m]
+#&gt;     3:     海水面 -9999 [m]
+#&gt;     4:     地表面 -9999 [m]
+#&gt;     5: データなし    NA [m]
+#&gt;    ---                     
+#&gt; 33746: データなし    NA [m]
+#&gt; 33747: データなし    NA [m]
+#&gt; 33748: データなし    NA [m]
+#&gt; 33749: データなし    NA [m]
+#&gt; 33750: データなし    NA [m]</div><div class='input'><span class='fu'>read_fgd_dem</span>(<span class='kw'>fgd_5dem</span>,
+             resolution = <span class='fl'>5</span>,
+             return_class = <span class='st'>"data.frame"</span>)</div><div class='output co'>#&gt; # A tibble: 33,750 x 2
 #&gt;    type       value
 #&gt;    &lt;chr&gt;        [m]
 #&gt;  1 その他     -9999
