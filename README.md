@@ -46,12 +46,11 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
   - 基本項目
   - 数値標高モデル (5m, 10mメッシュ)
 
-について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster)
-([stars](https://github.com/r-spatial/stars))として返却する関数が備わっています。
+について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster)、[stars](https://CRAN.R-project.org/package=stars)、[terra](https://CRAN.R-project.org/package=terra)として返却する関数が備わっています。
 
 ``` r
 library(fgdr)
-library(raster)
+library(terra)
 library(sf)
 ```
 
@@ -125,13 +124,13 @@ read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
     #> 33750:     内水面 -9999 [m]
 
 デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class
-=`によりrasterを選ぶことも可能です。rasterとして読み込み、可視化する例を示します。
+=`によりrasterやstars、terraのいずれかを選ぶことも可能です。terraとして読み込み、可視化する例を示します。
 
 ``` r
 r <- 
   read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml", 
              resolution = 5,
-             return_class = "raster")
+             return_class = "terra")
 ```
 
 ``` r
