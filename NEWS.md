@@ -4,6 +4,10 @@
 * Added support for terra format output with `read_fgd_dem()` 
 * When a DEM file is read and returned as a df, a unit (meter) attribute is added to the elevation value.
 
+## Bug fix
+
+- Fix a XML element name discrepancy. ([#21](https://github.com/uribo/fgdr/issues/21)).
+
 # fgdr 1.0.1
 
 * Compatibility with dependent packages.
