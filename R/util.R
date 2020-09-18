@@ -30,7 +30,7 @@ dem_check <- function(file, .verbose = TRUE, ...) {
   }
 }
 
-set_coords <- function(raster, meshcode) {
+set_coords <- function(raster, meshcode, as_stars = FALSE) {
   mesh <-
     meshcode %>%
     jpmesh::export_mesh() %>%
@@ -39,16 +39,33 @@ set_coords <- function(raster, meshcode) {
     mesh %>%
     sf::st_bbox() %>%
     as.numeric()
-  if (identical(c(class(raster)), "SpatRaster")) {
+
+  if (inherits(raster, "SpatRaster")) {
     terra::ext(raster) <-
       terra::ext(bb[1], bb[3], bb[2], bb[4])
     terra::crs(raster) <-
-      sf::st_crs(6668)$proj4string
-  } else if (identical(c(class(raster)), "RasterLayer")) {
-    raster::extent(raster) <-
-      raster::extent(bb[1], bb[3], bb[2], bb[4])
-    raster::crs(raster) <-
-      sf::st_crs(6668)$proj4string
+      "epsg:6668"
+    return(raster)
+  }
+  # TODO: until stars::st_set_bbox() is released on CRAN,
+  # it seems there's no means to set extent on stars objects
+  # so we need to do it before converting to stars.
+  raster::extent(raster) <-
+    raster::extent(bb[1], bb[3], bb[2], bb[4])
+  if (as_stars) {
+    raster <-
+      stars::st_as_stars(raster)
+    sf::st_crs(raster) <-
+      6668
+  } else {
+    # Depending on the version of PROJ, we'll see warning like
+    # "Discarded datum Japanese_Geodetic_Datum_2011 in CRS definition"
+    # But, as raster doesn't provide a way to specify it by EPSG code directly,
+    # we just need to suppress the warning here...
+    suppressWarnings(
+      raster::crs(raster) <-
+        sf::st_crs(6668)$proj4string
+    )
   }
   raster
 }
