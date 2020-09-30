@@ -1,4 +1,4 @@
-# fgdr (development version)
+# fgdr 1.1.0
 
 * Speed up `read_fgd_dem()` by using data.table for backend.
 * Added support for terra format output with `read_fgd_dem()` 
