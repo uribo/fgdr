@@ -19,8 +19,9 @@ test_that("Successed on dummies", {
                  return_class = "data.table")
   expect_is(res_dt, "data.table")
   expect_equal(dim(res_dt), dim(res_df))
-  expect_equal(res_dt$type, res_df$type)
-  expect_equal(res_dt$value, res_df$value)
+  expect_identical(
+    lapply(res_dt$type, utf8ToInt),
+    lapply(res_df$type, utf8ToInt))
 
   res <-
     read_fgd_dem(system.file("extdata/FG-GML-0000-00-00-DEM5A-dummy.xml",

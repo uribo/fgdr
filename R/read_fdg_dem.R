@@ -96,7 +96,8 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
         value = NA_real_)
   }
   if (output_type %in% c("data.table", "data.frame")) {
-    res <- df_dem_full %>%
+    res <-
+      df_dem_full %>%
       purrr::modify_at(2,
                        ~ units::set_units(.x, "m"))
     return(res)
