@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.0.2@sha256:cbc4ee809d594f0f6765be1d0fa046f48dfcda7340b5830473dd28fc71940c3c
+FROM rocker/tidyverse:4.0.2@sha256:7053555372caf65acd6e45cbe1ef80656b182c5da6c4e1a4540dbcce879eb719
 
 RUN set -x && \
   apt-get update && \
@@ -7,11 +7,6 @@ RUN set -x && \
     libgdal-dev \
     libudunits2-dev \
     zlib1g-dev && \
-  apt-get install -y \
-    r-cran-sf \
-    r-cran-raster \
-    r-cran-rgdal \
-    r-cran-roxygen2 && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
@@ -21,18 +16,10 @@ RUN set -x && \
   echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
 
 RUN set -x && \
-  install2.r --error --ncpus -1 --repos 'https://mran.revolutionanalytics.com/snapshot/2020-08-18' \
-    data.table \
-    devtools \
-    ensurer \
-    jpmesh \
-    mapview \
-    reprex \
-    stars \
-    terra \
-    usethis \
-    zeallot \
+  mkdir -p /home/rstudio/.local/share/renv/cache && \
+  chown -R rstudio:rstudio /home/rstudio
+
+RUN set -x && \
+  install2.r --error --ncpus -1 --repos 'https://mran.revolutionanalytics.com/snapshot/2020-09-29' \
     renv && \
-  installGithub.r \
-    dantonnoriega/xmltools && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
