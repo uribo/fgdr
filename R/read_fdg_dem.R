@@ -96,31 +96,27 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
         value = NA_real_)
   }
   if (output_type %in% c("data.table", "data.frame")) {
-    df_dem_full %>%
+    res <- df_dem_full %>%
       purrr::modify_at(2,
                        ~ units::set_units(.x, "m"))
-  } else if (output_type %in% c("raster", "stars", "terra")) {
-    rast_mat <-
-      df_dem_full %>%
-      purrr::pluck("value") %>%
-      matrix(nrow = grid_size$x, ncol = grid_size$y) %>%
-      t()
-    if (output_type == "terra") {
-      rast_mat %>%
-        terra::rast() %>%
-        set_coords(meshcode = file_info$meshcode)
-    } else {
-      if (output_type %in% c("raster", "stars")) {
-        res <-
-          rast_mat %>%
-          raster::raster() %>%
-          set_coords(meshcode = file_info$meshcode)
-      }
-      if (output_type == "raster") {
-        res
-      } else if (output_type == "stars") {
-        stars::st_as_stars(res)
-      }
-    }
+    return(res)
   }
+
+  rast_mat <-
+    df_dem_full %>%
+    purrr::pluck("value") %>%
+    matrix(nrow = grid_size$x, ncol = grid_size$y) %>%
+    t()
+  if (output_type == "terra") {
+    res <- rast_mat %>%
+      terra::rast() %>%
+      set_coords(meshcode = file_info$meshcode)
+    return(res)
+  }
+  # output_type is "raster" or "stars"
+  res <-
+    rast_mat %>%
+    raster::raster()
+  res %>%
+    set_coords(meshcode = file_info$meshcode, as_stars = identical(output_type, "stars"))
 }
