@@ -443,15 +443,15 @@
     },
     "htmltools": {
       "Package": "htmltools",
-      "Version": "0.5.0.9000",
+      "Version": "0.5.0.9001",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "rstudio",
       "RemoteRepo": "htmltools",
       "RemoteRef": "HEAD",
-      "RemoteSha": "e35c3fa3061fe2ff48f76b8b10bae3e2c0c1a91c",
+      "RemoteSha": "66aa3eb1a0ea157c4612f96e44ce5c97f3531554",
       "RemoteHost": "api.github.com",
-      "Hash": "24bb419d82d6e8243c8f72a773c23e8d"
+      "Hash": "5ad792fcb7143400538abb0ba0396887"
     },
     "htmlwidgets": {
       "Package": "htmlwidgets",
@@ -504,10 +504,10 @@
     },
     "knitr": {
       "Package": "knitr",
-      "Version": "1.29",
+      "Version": "1.30",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "e5f4c41c17df8cdf7b0df12117c0d99a"
+      "Hash": "eed7ee0d02eee88d53881cdc92457c62"
     },
     "labeling": {
       "Package": "labeling",
@@ -728,15 +728,15 @@
     },
     "processx": {
       "Package": "processx",
-      "Version": "3.4.4.9000",
+      "Version": "3.4.4.9001",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "r-lib",
       "RemoteRepo": "processx",
       "RemoteRef": "master",
-      "RemoteSha": "447dab47698b7ca52b43f9e2d267c1c8844aedd4",
-      "Hash": "9f9347dd778feaf659f90d465dc0ea2d"
+      "RemoteSha": "c4511ed803eb75790da13bf4ca5542b1314add0d",
+      "RemoteHost": "api.github.com",
+      "Hash": "265fa3758f5654eaa7b16e702092fb81"
     },
     "progress": {
       "Package": "progress",
@@ -978,10 +978,10 @@
     },
     "survival": {
       "Package": "survival",
-      "Version": "3.2-3",
+      "Version": "3.2-7",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3cc6154c577a82f06250254db30a4bfb"
+      "Hash": "39c4ac6d22dad33db0ee37b40810ea12"
     },
     "svglite": {
       "Package": "svglite",
@@ -1048,10 +1048,10 @@
     },
     "tinytex": {
       "Package": "tinytex",
-      "Version": "0.25",
+      "Version": "0.26",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a4b9662282097d1033c60420dcb83350"
+      "Hash": "db6477efcfbffcd9b3758c3c2882cf58"
     },
     "units": {
       "Package": "units",
@@ -1118,17 +1118,17 @@
     },
     "withr": {
       "Package": "withr",
-      "Version": "2.2.0",
+      "Version": "2.3.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "ecd17882a0b4419545691e095b74ee89"
+      "Hash": "7307d79f58d1885b38c4f4f1a8cb19dd"
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.17",
+      "Version": "0.18",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5016afba2a931ac92bbb3c6feb03d2c8"
+      "Hash": "d1c0b777b432e4b4c039c8aaecc54e0f"
     },
     "xml2": {
       "Package": "xml2",
