@@ -109,7 +109,8 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
     matrix(nrow = grid_size$x, ncol = grid_size$y) %>%
     t()
   if (output_type == "terra") {
-    res <- rast_mat %>%
+    res <-
+      rast_mat %>%
       terra::rast() %>%
       set_coords(meshcode = file_info$meshcode)
     return(res)
@@ -119,5 +120,6 @@ read_fgd_dem <- function(file, resolution = c(5, 10),
     rast_mat %>%
     raster::raster()
   res %>%
-    set_coords(meshcode = file_info$meshcode, as_stars = identical(output_type, "stars"))
+    set_coords(meshcode = file_info$meshcode,
+               as_stars = identical(output_type, "stars"))
 }

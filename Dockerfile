@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.0.2@sha256:7053555372caf65acd6e45cbe1ef80656b182c5da6c4e1a4540dbcce879eb719
+FROM rocker/tidyverse:4.0.3@sha256:6c228f305c6e1322e7259cd22d0bcfffb26b56fde08b4d6eb854405f7943d9da
 
 RUN set -x && \
   apt-get update && \
@@ -20,6 +20,6 @@ RUN set -x && \
   chown -R rstudio:rstudio /home/rstudio
 
 RUN set -x && \
-  install2.r --error --ncpus -1 --repos 'https://mran.revolutionanalytics.com/snapshot/2020-09-29' \
+  install2.r --error --ncpus -1 --repos 'https://cran.microsoft.com/snapshot/2020-11-25/' \
     renv && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
