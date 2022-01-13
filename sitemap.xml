@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://uribo.github.io/fgdr/404.html</loc>
+  </url>
+  <url>
+    <loc>https://uribo.github.io/fgdr/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://uribo.github.io/fgdr/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://uribo.github.io/fgdr/authors.html</loc>
+  </url>
+  <url>
     <loc>https://uribo.github.io/fgdr/index.html</loc>
+  </url>
+  <url>
+    <loc>https://uribo.github.io/fgdr/news/index.html</loc>
   </url>
   <url>
     <loc>https://uribo.github.io/fgdr/reference/dem_check.html</loc>
   </url>
   <url>
     <loc>https://uribo.github.io/fgdr/reference/fgd_line_parse.html</loc>
+  </url>
+  <url>
+    <loc>https://uribo.github.io/fgdr/reference/index.html</loc>
   </url>
   <url>
     <loc>https://uribo.github.io/fgdr/reference/pipe.html</loc>
