@@ -40,7 +40,9 @@ test_that("Successed on dummies", {
   expect_s3_class(res, "tbl_df")
   expect_equal(dim(res), c(843750, 2))
   expect_named(res, c("type", "value"))
-  expect_equal(unique(res$value), c(-9999L, NA_real_))
+  expect_equal(
+    units::drop_units(unique(res$value)),
+    c(-9999L, NA_real_))
   res_stars <-
     read_fgd_dem(system.file("extdata/FG-GML-0000-10-dem10b-dummy.xml",
                              package = "fgdr"),
