@@ -5,19 +5,19 @@
 
 (Sorry, English version of README is not availavle for now.)
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
 [![CRAN RStudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr)
+downloads](https://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg)](https://cran.r-project.org/)
 
 [![Travis build
 status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr)
 [![Codecov test
-coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://codecov.io/gh/uribo/fgdr?branch=master)
+coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/uribo/fgdr?branch=master)
 
-このパッケージは、国土地理院 基盤地図情報 (**FGD**: Fundermental Geographic Data
-<https://fgd.gsi.go.jp/download/menu.php>)
+このパッケージは、国土地理院 基盤地図情報 (**FGD**: Fundermental
+Geographic Data <https://fgd.gsi.go.jp/download/menu.php>)
 からダウンロードしたデータ(バージョン4.1に対応)をR上で扱うためにデータの変換を行う関数を提供します。
 
 ## Installation
@@ -43,8 +43,8 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
 
 このパッケージには、基盤地図情報データダウロードサービスが提供している
 
-  - 基本項目
-  - 数値標高モデル (5m, 10mメッシュ)
+-   基本項目
+-   数値標高モデル (5m, 10mメッシュ)
 
 について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster)、[stars](https://CRAN.R-project.org/package=stars)、[terra](https://CRAN.R-project.org/package=terra)として返却する関数が備わっています。
 
@@ -64,17 +64,17 @@ read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
 ```
 
     #> Simple feature collection with 4 features and 8 fields
-    #> geometry type:  POINT
-    #> dimension:      XY
-    #> bbox:           xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013
-    #> geographic CRS: JGD2011
-    #> # A tibble: 4 x 9
-    #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
-    #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
-    #> 1 K6_48… 郡市・東… 真庭市… 33214    2015-05-25     2018-07-03              25000
-    #> 2 K6_48… 町村・指… 美咲町… 33666    2015-05-25     2018-07-03              25000
-    #> 3 K6_48… 郡市・東… 津山市… 33203    2015-05-25     2018-07-03              25000
-    #> 4 K6_48… 郡市・東… 津山市… 33203    2015-05-25     2018-07-03              25000
+    #> Geometry type: POINT
+    #> Dimension:     XY
+    #> Bounding box:  xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013
+    #> Geodetic CRS:  JGD2011
+    #> # A tibble: 4 × 9
+    #>   gml_id       type  name  adm_code life_span_from development_date org_gi_level
+    #>   <chr>        <chr> <chr> <chr>    <date>         <date>                  <int>
+    #> 1 K6_48162126… 郡市… 真庭… 33214    2015-05-25     2018-07-03              25000
+    #> 2 K6_48180126… 町村… 美咲… 33666    2015-05-25     2018-07-03              25000
+    #> 3 K6_48183126… 郡市… 津山… 33203    2015-05-25     2018-07-03              25000
+    #> 4 K6_48192126… 郡市… 津山… 33203    2015-05-25     2018-07-03              25000
     #> # … with 2 more variables: visibility <chr>, geometry <POINT [°]>
 
 水域 (WL) はライン、行政区画 (AdmArea) はポリゴンデータになります。
@@ -84,17 +84,17 @@ read_fgd("FG-GML-523346-AdmArea-20180701-0001.xml")
 ```
 
     #> Simple feature collection with 4 features and 8 fields
-    #> geometry type:  POLYGON
-    #> dimension:      XY
-    #> bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333
-    #> geographic CRS: JGD2011
-    #> # A tibble: 4 x 9
-    #>   gml_id type  name  adm_code life_span_from development_date org_gi_level
-    #>   <chr>  <chr> <chr> <chr>    <date>         <date>                  <int>
-    #> 1 K4_52… 町村・指… 美咲町… 33666    2018-07-02     2018-07-03              25000
-    #> 2 K4_52… 郡市・東… 真庭市… 33214    2018-07-02     2018-07-03              25000
-    #> 3 K4_52… 郡市・東… 津山市… 33203    2018-07-02     2018-07-03              25000
-    #> 4 K4_52… 郡市・東… 津山市… 33203    2018-07-02     2018-07-03              25000
+    #> Geometry type: POLYGON
+    #> Dimension:     XY
+    #> Bounding box:  xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333
+    #> Geodetic CRS:  JGD2011
+    #> # A tibble: 4 × 9
+    #>   gml_id       type  name  adm_code life_span_from development_date org_gi_level
+    #>   <chr>        <chr> <chr> <chr>    <date>         <date>                  <int>
+    #> 1 K4_523346_1… 町村… 美咲… 33666    2018-07-02     2018-07-03              25000
+    #> 2 K4_523346_2… 郡市… 真庭… 33214    2018-07-02     2018-07-03              25000
+    #> 3 K4_523346_3… 郡市… 津山… 33203    2018-07-02     2018-07-03              25000
+    #> 4 K4_523346_4… 郡市… 津山… 33203    2018-07-02     2018-07-03              25000
     #> # … with 2 more variables: visibility <chr>, geometry <POLYGON [°]>
 
 ## 数値標高モデル
@@ -123,8 +123,7 @@ read_fgd_dem("FG-GML-5135-63-00-DEM5A-20161001.xml",
     #> 33749:     内水面 -9999 [m]
     #> 33750:     内水面 -9999 [m]
 
-デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class
-=`によりrasterやstars、terraのいずれかを選ぶことも可能です。terraとして読み込み、可視化する例を示します。
+デフォルトでは返り値のオブジェクトがデータフレームですが、これは引数`return_class =`によりrasterやstars、terraのいずれかを選ぶことも可能です。terraとして読み込み、可視化する例を示します。
 
 ``` r
 r <- 

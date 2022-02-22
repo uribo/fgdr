@@ -16,10 +16,10 @@ knitr::opts_chunk$set(
 
 (Sorry, English version of README is not availavle for now.)
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg)](https://cran.r-project.org/)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg)](https://cran.r-project.org/)
 
-[![Travis build status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr) [![Codecov test coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://codecov.io/gh/uribo/fgdr?branch=master)
+[![Travis build status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr) [![Codecov test coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/uribo/fgdr?branch=master)
 
 このパッケージは、国土地理院 基盤地図情報 (**FGD**: Fundermental Geographic Data https://fgd.gsi.go.jp/download/menu.php) からダウンロードしたデータ(バージョン4.1に対応)をR上で扱うためにデータの変換を行う関数を提供します。
 
