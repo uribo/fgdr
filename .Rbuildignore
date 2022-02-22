@@ -20,3 +20,4 @@
 ^\.github$
 ^\.Rprofile$
 ^revdep$
+^CRAN-SUBMISSION$
