@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fgdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -86,8 +86,8 @@
 <div class="page-header"><h1 id="fgdr-">fgdr <img src="reference/figures/logo.png" align="right" width="120px"><a class="anchor" aria-label="anchor" href="#fgdr-"></a>
 </h1></div>
 <p>(Sorry, English version of README is not availavle for now.)</p>
-<p><a href="https://cran.r-project.org/package=fgdr" class="external-link"><img src="http://www.r-pkg.org/badges/version/fgdr" alt="CRAN_Status_Badge"></a> <a href="https://cran.r-project.org/package=fgdr" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/fgdr?color=FF5254" alt="CRAN RStudio mirror downloads"></a> <a href="https://cran.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg" alt="minimal R version"></a></p>
-<p><a href="https://travis-ci.org/uribo/fgdr" class="external-link"><img src="https://travis-ci.org/uribo/fgdr.svg?branch=master" alt="Travis build status"></a> <a href="https://codecov.io/gh/uribo/fgdr?branch=master" class="external-link"><img src="https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></p>
+<p><a href="https://cran.r-project.org/package=fgdr" class="external-link"><img src="https://www.r-pkg.org/badges/version/fgdr" alt="CRAN_Status_Badge"></a> <a href="https://cran.r-project.org/package=fgdr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/fgdr?color=FF5254" alt="CRAN RStudio mirror downloads"></a> <a href="https://cran.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg" alt="minimal R version"></a></p>
+<p><a href="https://travis-ci.org/uribo/fgdr" class="external-link"><img src="https://travis-ci.org/uribo/fgdr.svg?branch=master" alt="Travis build status"></a> <a href="https://app.codecov.io/gh/uribo/fgdr?branch=master" class="external-link"><img src="https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></p>
 <p>このパッケージは、国土地理院 基盤地図情報 (<strong>FGD</strong>: Fundermental Geographic Data <a href="https://fgd.gsi.go.jp/download/menu.php" class="external-link uri">https://fgd.gsi.go.jp/download/menu.php</a>) からダウンロードしたデータ(バージョン4.1に対応)をR上で扱うためにデータの変換を行う関数を提供します。</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -123,33 +123,33 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/read_fgd.html">read_fgd</a></span><span class="op">(</span><span class="st">"FG-GML-523346-AdmPt-20180701-0001.xml"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#&gt; Simple feature collection with 4 features and 8 fields</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; geometry type:  POINT</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; dimension:      XY</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; bbox:           xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; geographic CRS: JGD2011</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; # A tibble: 4 x 9</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;   gml_id type  name  adm_code life_span_from development_date org_gi_level</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 1 K6_48… 郡市・東… 真庭市… 33214    2015-05-25     2018-07-03              25000</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 2 K6_48… 町村・指… 美咲町… 33666    2015-05-25     2018-07-03              25000</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 3 K6_48… 郡市・東… 津山市… 33203    2015-05-25     2018-07-03              25000</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 4 K6_48… 郡市・東… 津山市… 33203    2015-05-25     2018-07-03              25000</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; Geometry type: POINT</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; Bounding box:  xmin: 133.7835 ymin: 35.00697 xmax: 133.8736 ymax: 35.06013</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; Geodetic CRS:  JGD2011</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; # A tibble: 4 × 9</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;   gml_id       type  name  adm_code life_span_from development_date org_gi_level</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 1 K6_48162126… 郡市… 真庭… 33214    2015-05-25     2018-07-03              25000</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 2 K6_48180126… 町村… 美咲… 33666    2015-05-25     2018-07-03              25000</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 3 K6_48183126… 郡市… 津山… 33203    2015-05-25     2018-07-03              25000</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 4 K6_48192126… 郡市… 津山… 33203    2015-05-25     2018-07-03              25000</span></span>
 <span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; # … with 2 more variables: visibility &lt;chr&gt;, geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
 <p>水域 (WL) はライン、行政区画 (AdmArea) はポリゴンデータになります。</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/read_fgd.html">read_fgd</a></span><span class="op">(</span><span class="st">"FG-GML-523346-AdmArea-20180701-0001.xml"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&gt; Simple feature collection with 4 features and 8 fields</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; geometry type:  POLYGON</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; dimension:      XY</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; bbox:           xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; geographic CRS: JGD2011</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; # A tibble: 4 x 9</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;   gml_id type  name  adm_code life_span_from development_date org_gi_level</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; 1 K4_52… 町村・指… 美咲町… 33666    2018-07-02     2018-07-03              25000</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; 2 K4_52… 郡市・東… 真庭市… 33214    2018-07-02     2018-07-03              25000</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; 3 K4_52… 郡市・東… 津山市… 33203    2018-07-02     2018-07-03              25000</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; 4 K4_52… 郡市・東… 津山市… 33203    2018-07-02     2018-07-03              25000</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; Geometry type: POLYGON</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; Bounding box:  xmin: 133.75 ymin: 35 xmax: 133.875 ymax: 35.08333</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; Geodetic CRS:  JGD2011</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; # A tibble: 4 × 9</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;   gml_id       type  name  adm_code life_span_from development_date org_gi_level</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;date&gt;         &lt;date&gt;                  &lt;int&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; 1 K4_523346_1… 町村… 美咲… 33666    2018-07-02     2018-07-03              25000</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; 2 K4_523346_2… 郡市… 真庭… 33214    2018-07-02     2018-07-03              25000</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; 3 K4_523346_3… 郡市… 津山… 33203    2018-07-02     2018-07-03              25000</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; 4 K4_523346_4… 郡市… 津山… 33203    2018-07-02     2018-07-03              25000</span></span>
 <span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; # … with 2 more variables: visibility &lt;chr&gt;, geometry &lt;POLYGON [°]&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -264,7 +264,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer>
