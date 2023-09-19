@@ -3,18 +3,13 @@
 
 # fgdr <img src="man/figures/logo.png" align="right" width="120px" />
 
-(Sorry, English version of README is not availavle for now.)
+(Sorry, English version of README is not available for now.)
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/fgdr)](https://cran.r-project.org/package=fgdr)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/fgdr?color=FF5254)](https://cran.r-project.org/package=fgdr)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.3.0-blue.svg)](https://cran.r-project.org/)
-
-[![Travis build
-status](https://travis-ci.org/uribo/fgdr.svg?branch=master)](https://travis-ci.org/uribo/fgdr)
-[![Codecov test
-coverage](https://codecov.io/gh/uribo/fgdr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/uribo/fgdr?branch=master)
 
 このパッケージは、国土地理院 基盤地図情報 (**FGD**: Fundermental
 Geographic Data <https://fgd.gsi.go.jp/download/menu.php>)
@@ -28,11 +23,10 @@ Geographic Data <https://fgd.gsi.go.jp/download/menu.php>)
 install.packages("fgdr")
 ```
 
-開発版を利用する場合はGitHub経由でインストールします。
+開発版を利用する場合はr-universe経由でインストールが可能です。
 
 ``` r
-install.packages("remotes")
-remotes::install_github("uribo/fgdr")
+install.packages("fgdr", repos = "https://uribo.r-universe.dev")
 ```
 
 ## Example
@@ -43,8 +37,8 @@ fgdrパッケージを使った、基盤地図情報データの読み込み方�
 
 このパッケージには、基盤地図情報データダウロードサービスが提供している
 
--   基本項目
--   数値標高モデル (5m, 10mメッシュ)
+- 基本項目
+- 数値標高モデル (5m, 10mメッシュ)
 
 について、データフレーム、Rの地理空間データを扱うためのクラスである[sf](https://CRAN.R-project.org/package=sf)または[raster](https://CRAN.R-project.org/package=raster)、[stars](https://CRAN.R-project.org/package=stars)、[terra](https://CRAN.R-project.org/package=terra)として返却する関数が備わっています。
 
@@ -75,7 +69,7 @@ read_fgd("FG-GML-523346-AdmPt-20180701-0001.xml")
     #> 2 K6_48180126… 町村… 美咲… 33666    2015-05-25     2018-07-03              25000
     #> 3 K6_48183126… 郡市… 津山… 33203    2015-05-25     2018-07-03              25000
     #> 4 K6_48192126… 郡市… 津山… 33203    2015-05-25     2018-07-03              25000
-    #> # … with 2 more variables: visibility <chr>, geometry <POINT [°]>
+    #> # ℹ 2 more variables: visibility <chr>, geometry <POINT [°]>
 
 水域 (WL) はライン、行政区画 (AdmArea) はポリゴンデータになります。
 
@@ -95,7 +89,7 @@ read_fgd("FG-GML-523346-AdmArea-20180701-0001.xml")
     #> 2 K4_523346_2… 郡市… 真庭… 33214    2018-07-02     2018-07-03              25000
     #> 3 K4_523346_3… 郡市… 津山… 33203    2018-07-02     2018-07-03              25000
     #> 4 K4_523346_4… 郡市… 津山… 33203    2018-07-02     2018-07-03              25000
-    #> # … with 2 more variables: visibility <chr>, geometry <POLYGON [°]>
+    #> # ℹ 2 more variables: visibility <chr>, geometry <POLYGON [°]>
 
 ## 数値標高モデル
 
@@ -158,7 +152,7 @@ read_fgd_dem("FG-GML-5440-10-dem10b-20161001.xml",
     #> dimensions : 750, 1125, 843750  (nrow, ncol, ncell)
     #> resolution : 0.0001111111, 0.00011112  (x, y)
     #> extent     : 140, 140.125, 36.08333, 36.16667  (xmin, xmax, ymin, ymax)
-    #> crs        : +proj=longlat +ellps=GRS80 +no_defs 
+    #> crs        : +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +no_defs 
     #> source     : memory
     #> names      : layer 
     #> values     : 5, 316  (min, max)
